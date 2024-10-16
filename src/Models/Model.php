@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
-use PDO;
+use App\Config\Db;  // Connexion à la base de données via Db
 
 class Model {
-    protected static function getDB() {
-        // Connexion à la base de données
-        $db = new PDO('mysql:host=mysql-elcapitanstudi.alwaysdata.net;dbname=elcapitanstudi_ecf', '373289_elcapitan', 'Schmidt-Bdd/elc83');
-        return $db;
+    protected $db;
+
+    public function __construct() {
+        $this->db = Db::getInstance();  // Connexion centralisée à la base de données
+    }
+
+    // Méthodes communes pour les modèles, par exemple :
+    public function query($sql, $params = []) {
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($params);
+        return $stmt;
     }
 }
