@@ -1,25 +1,40 @@
-<!-- src/Views/admin/users/list.php -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des utilisateurs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Liste des utilisateurs</h1>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Rôle</th>
-        </tr>
-        <?php foreach ($users as $user): ?>
-        <tr>
-            <td><?= $user->id ?></td>
-            <td><?= $user->email ?></td>
-            <td><?= $user->role ?></td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
+    <div class="container mt-5">
+        <h1>Liste des utilisateurs</h1>
+        <a href="/admin/addUser" class="btn btn-success mb-3">Ajouter un utilisateur</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Rôle</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($users as $user): ?>
+                <tr>
+                    <td><?= htmlspecialchars($user->email) ?></td>
+                    <td><?= htmlspecialchars($user->last_name) ?></td>
+                    <td><?= htmlspecialchars($user->first_name) ?></td>
+                    <td><?= htmlspecialchars($user->role) ?></td>
+                    <td>
+                        <a href="/admin/editUser/<?= $user->id ?>" class="btn btn-primary">Modifier</a>
+                        <a href="/admin/deleteUser/<?= $user->id ?>" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

@@ -8,7 +8,8 @@
 <body>
     <h1>Bienvenue sur la page d'accueil d'Arcadia</h1>
     <ul>
-      <li><a href="/admin/dashboard">Admin Dashboard</a></li>
+    <li><a href="/index.php?controller=admin&action=dashboard">Admin Dashboard</a></li>
+
       <li></li>
       <li></li>
       <li></li>

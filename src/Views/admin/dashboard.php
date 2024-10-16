@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="/Public/assets/css/admin.css">
 </head>
 <body>
+<div class="container mt-5">
+        <h1>Tableau de bord Admin</h1>
+        <!-- Tu peux ajouter des sections ici -->
+        <p>Bienvenue sur le tableau de bord administrateur.</p>
+    </div>
     <div class="admin-container">
         <!-- Sidebar Menu -->
         <aside class="admin-sidebar">
@@ -41,6 +46,15 @@
 
             <section class="admin-content">
                 <!-- Section Utilisateurs -->
+<!-- Ajout du lien pour créer un nouvel utilisateur -->
+<div class="admin-section">
+    <h2>Gestion des Utilisateurs</h2>
+    <a href="/index.php?controller=admin&action=createUser" class="btn btn-success">Ajouter un utilisateur</a>
+    <table class="table table-striped">
+        <!-- Tableau existant des utilisateurs -->
+    </table>
+</div>
+
                 <div class="admin-section">
                     <h2>Gestion des Utilisateurs</h2>
                     <table class="table">
