@@ -1,0 +1,75 @@
+.admin-container {
+  display: flex;
+  height: 100vh;
+}
+
+.admin-sidebar {
+  width: 250px;
+  background-color: #343a40;
+  padding: 20px;
+  color: #fff;
+}
+
+.admin-sidebar .logo img {
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.admin-sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-sidebar nav ul li {
+  margin-bottom: 15px;
+}
+
+.admin-sidebar nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+}
+
+.admin-main {
+  flex-grow: 1;
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.admin-header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.admin-content {
+  margin-top: 20px;
+}
+
+.admin-section {
+  margin-bottom: 40px;
+}
+
+.admin-section h2 {
+  margin-bottom: 20px;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.btn {
+  margin-top: 10px;
+}

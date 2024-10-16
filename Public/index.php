@@ -1,17 +1,14 @@
 <?php
+// Inclure l'autoloader de Composer
+require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\Autoloader;
-use App\Config\Main;
+// Gérer la requête de l'utilisateur
+$controller = $_GET['controller'] ?? 'Main'; // Contrôleur par défaut
+$action = $_GET['action'] ?? 'index'; // Action par défaut
 
-// Définir la constante ROOT pour la racine du projet
-define('ROOT', dirname(__DIR__));
+// Instancier le bon contrôleur
+$controllerClass = "\\App\\Controllers\\" . ucfirst($controller) . "Controller";
+$controllerInstance = new $controllerClass();
 
-// Inclure l'autoloader
-require_once ROOT . '/Autoloader.php';
-
-// Enregistrer l'autoloader
-Autoloader::register();
-
-// Démarrer l'application
-$main = new Main;
-$main->start();
+// Appeler la bonne méthode du contrôleur
+$controllerInstance->$action();
