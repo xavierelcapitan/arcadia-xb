@@ -1,42 +1,42 @@
+<!-- Views/layouts/templatedashboard.php -->
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de bord - Arcadia</title>
-    <link rel="stylesheet" href="/assets/css/admin.css"> <!-- Le bon chemin -->
+    <title>Tableau de Bord - Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/admin.css">
 </head>
 <body>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="admin-sidebar col-md-2">
+                <div class="logo">
+                    <img src="/assets/images/logo.png" alt="Logo">
+                </div>
+                <ul>
+                    <li><a href="/index.php?controller=admin&action=dashboard">Dashboard</a></li>
+                    <li><a href="/index.php?controller=admin&action=users">Utilisateurs</a></li>
+                    <li><a href="/index.php?controller=admin&action=horaires">Horaires</a></li>
+                    <li><a href="/index.php?controller=admin&action=services">Services</a></li>
+                    <li><a href="/index.php?controller=admin&action=animals">Gestion des Animaux</a></li>
+                    <li><a href="/index.php?controller=admin&action=habitats">Habitats</a></li>
+                    <li><a href="/index.php?controller=admin&action=stats">Stats</a></li>
+                    <li><a href="/index.php?controller=admin&action=reports">Comptes Rendus</a></li>
+                    <li><a href="/index.php?controller=auth&action=logout">Log Out</a></li>
+                </ul>
+            </aside>
 
-<div class="admin-container">
-    <nav class="admin-sidebar">
-        <div class="logo">
-            <img src="/assets/images/logo.png" alt="Logo">
-        </div>
-        <ul>
-            <li><a href="/admin/dashboard">Dashboard</a></li>
-            <li><a href="/admin/users/list">Utilisdfsdfsdfsateurs</a></li>
-            <li><a href="/admin/hours/list">Horaires</a></li>
-            <li><a href="/admin/services/list">Services</a></li>
-            <li><a href="/admin/animals/list">Gestion des Animaux</a></li>
-            <li><a href="/admin/habitats/list">Habitats</a></li>
-            <li><a href="/admin/stats">Stats</a></li>
-            <li><a href="/admin/reports/list">Comptes Rendus</a></li>
-            <li><a href="/admin/logout">Log Out</a></li>
-        </ul>
-    </nav>
-
-    <div class="admin-main">
-        <div class="admin-header">
-            <h1>Tableau de bord - Administration</h1>
-        </div>
-
-        <div class="admin-content">
-            <!-- Le contenu sera injecté ici -->
-            <?= $content ?? '' ?>
+            <!-- Inclusion du contenu dynamique -->
+            <div class="admin-main col-md-10">
+                <?php require_once $view; ?>
+            </div>
         </div>
     </div>
-</div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/admin.js"></script>
 </body>
 </html>

@@ -8,10 +8,9 @@ class AdminController {
 
     // Méthode pour afficher le tableau de bord
     public function dashboard() {
-        // On peut passer ici d'autres variables si nécessaire
-        $users = User::getAll(); // Si tu as besoin de récupérer les utilisateurs aussi pour le dashboard
-        $content = "<h2>Bienvenue sur le tableau de bord administrateur.</h2>"; // Par exemple, on passe du contenu spécifique au dashboard
-        require_once __DIR__ . '/../../Views/admin/dashboard.php';
+        $users = User::getAll(); // Si nécessaire
+        $view = __DIR__ . '/../../Views/admin/dashboard.php';
+        require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
 
     // Méthode pour afficher la liste des utilisateurs

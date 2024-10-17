@@ -1,95 +1,70 @@
-/* Admin Layout */
-.admin-container {
-  display: flex;
-  height: 100vh;
+/* Style général */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
-
-/* Sidebar fixée à gauche */
+/* Menu fixe à gauche */
 .admin-sidebar {
   width: 250px;
+  height: 100vh;
   background-color: #343a40;
-  padding: 20px;
-  color: #fff;
-  position: fixed; /* Fixe le menu à gauche */
+  position: fixed;
   top: 0;
   left: 0;
-  bottom: 0;
-  height: 100%; /* Prendre toute la hauteur */
+  padding-top: 20px;
 }
 
 .admin-sidebar .logo img {
-  max-width: 100%;
-  margin-bottom: 20px;
+  display: block;
+  margin: 0 auto;
+  max-width: 100px;
 }
 
-.admin-sidebar nav ul {
+.admin-sidebar ul {
   list-style: none;
-  padding: 0;
+  padding-left: 0;
+  margin: 0;
 }
 
-.admin-sidebar nav ul li {
-  margin-bottom: 15px;
+.admin-sidebar ul li {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.admin-sidebar nav ul li a {
-  color: #fff;
+.admin-sidebar ul li a {
+  color: white;
   text-decoration: none;
   font-weight: bold;
+  padding: 10px 0;
   display: block;
-  padding: 10px;  /* Ajout pour un meilleur espacement */
-  background-color: #444;  /* Couleur de fond similaire à dashboard.css */
-  border-radius: 4px;      /* Ajout pour les coins arrondis */
-  transition: background-color 0.3s; /* Transition pour l'hover */
 }
 
-.admin-sidebar nav ul li a:hover {
-  background-color: #555;  /* Effet au survol */
+.admin-sidebar ul li a:hover {
+  background-color: #495057;
+  border-radius: 5px;
 }
 
-/* Main content pour ajuster avec le menu fixe */
+/* Contenu principal */
 .admin-main {
-  margin-left: 250px; /* Correspond à la largeur de la sidebar */
-  padding: 20px;
-  background-color: #f8f9fa;
-  width: calc(100% - 250px); /* Ajustement pour prendre toute la largeur */
+  background-color: #414243;
+  padding: 0; /* Supprimer les padding inutiles */
+  margin: 0; /* Supprimer les marges */
+  margin-left: 250px; /* La largeur de la sidebar */
+  width: calc(100% - 250px); /* Prendre tout l'espace sauf la sidebar */
+  min-height: 100vh; /* Pour couvrir toute la hauteur de la page */
 }
 
-/* Header du tableau de bord */
 .admin-header {
   background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-}
-
-/* Contenu du tableau de bord */
-.admin-content {
-  margin-top: 20px;
-}
-
-.admin-section {
-  margin-bottom: 40px;
-}
-
-.admin-section h2 {
-  margin-bottom: 20px;
-}
-
-/* Table et Cards */
-.table th, .table td {
-  vertical-align: middle;
-}
-
-.card {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  color: white;
   padding: 20px;
-  margin-bottom: 20px;
+  text-align: center;
+  margin: 0; /* Supprimer la marge */
 }
 
-.card h3 {
-  margin-bottom: 10px;
-}
-
-.btn {
-  margin-top: 10px;
+.admin-content {
+  background-color: #cc12aa;
+  padding: 20px;
+  min-height: 800px; /* Ajuster la hauteur si nécessaire */
 }
