@@ -10,7 +10,7 @@ class UserController {
         $users = User::getAll();
 
         // Rendre la vue des utilisateurs
-        require_once __DIR__ . '/../Views/admin/users/list.php';
+        require_once __DIR__ . '/../../Views/admin/users/list.php';
     }
 
     public function create() {

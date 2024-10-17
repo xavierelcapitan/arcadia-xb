@@ -1,3 +1,23 @@
+
+<h2>Liste des utilisateurs</h2>
+<a href="/index.php?controller=users&action=create" class="btn btn-success">Ajouter un utilisateur</a>
+<table class="table table-bordered mt-4">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Rôle</th>
+            <th>Modifier</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Affichage des utilisateurs ici -->
+    </tbody>
+</table>
+
+
+
+
 <div class="admin-section">
     <h2>Gestion des Utilisateurs</h2>
     <a href="/index.php?controller=admin&action=createUser" class="btn btn-success">Ajouter un utilisateur</a>
@@ -30,3 +50,4 @@
         </tbody>
     </table>
 </div>
+

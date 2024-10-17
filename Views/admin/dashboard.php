@@ -41,7 +41,7 @@
             <section class="admin-content">
                 <!-- CONTENU DYNAMIQUE -->
               
-
+                <?php echo $content; ?>
                 
             </section>
         </main>
