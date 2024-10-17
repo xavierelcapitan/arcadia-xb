@@ -1,3 +1,5 @@
+<!-- src/Views/admin/dashboard.php -->
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,9 +20,9 @@
                 <img src="/Public/assets/img/logo.png" alt="Logo">
             </div>
             <nav>
-                <h4>Dasboard</h4>
+                <h4>Dashboard</h4>
                 <ul>
-                    <li><a href="/admin/users">Utilisateurs</a></li>
+                <li><a href="/admin/users/list">Utilisateurs</a></li>
                     <li><a href="/admin/hours">Horaires</a></li>
                     <li><a href="/admin/services">Services</a></li>
                     <li><a href="/admin/animals">Gestion des Animaux</a></li>

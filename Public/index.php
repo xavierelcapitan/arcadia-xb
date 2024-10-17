@@ -1,15 +1,15 @@
 <?php
 
-// Inclure l'autoloader de Composer
-require_once __DIR__ . '/../src/Config/Autoloader.php';
-// Public/index.php
-require_once __DIR__ . '/../vendor/autoload.php';
+// Définir une constante pour le chemin du projet
+define('ROOT', dirname(__DIR__));
 
-Autoloader::register();
+// Inclure l'autoloader
+require_once ROOT . '/src/Config/Autoloader.php';
 
-use App\Config\Db;  // Le use est ici, en dehors de tout bloc
+// Enregistrer l'autoloader
+\App\Config\Autoloader::register();
 
-
+use App\Config\Db;
 
 // Récupérer l'instance de la base de données
 $db = Db::getInstance();
@@ -24,15 +24,13 @@ $controllerClass = "\\App\\Controllers\\" . ucfirst($controller) . "Controller";
 // Vérifier si la classe du contrôleur existe
 if (class_exists($controllerClass)) {
     $controllerInstance = new $controllerClass();
-    
+
     // Vérifier si la méthode d'action existe
     if (method_exists($controllerInstance, $action)) {
         $controllerInstance->$action();
     } else {
-        // Gestion d'erreur si l'action n'existe pas
-        echo "L'action $action n'existe pas dans le contrôleur $controllerClass.";
+        throw new \Exception("L'action $action n'existe pas dans le contrôleur $controllerClass.");
     }
 } else {
-    // Gestion d'erreur si le contrôleur n'existe pas
-    echo "Le contrôleur $controllerClass est introuvable.";
+    throw new \Exception("Le contrôleur $controllerClass est introuvable.");
 }

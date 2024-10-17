@@ -8,13 +8,16 @@ class AdminController {
 
     // Méthode pour afficher le tableau de bord
     public function dashboard() {
-        $users = User::getAll();
+        // On peut passer ici d'autres variables si nécessaire
+        $users = User::getAll(); // Si tu as besoin de récupérer les utilisateurs aussi pour le dashboard
+        $content = "<h2>Bienvenue sur le tableau de bord administrateur.</h2>"; // Par exemple, on passe du contenu spécifique au dashboard
         require_once __DIR__ . '/../../Views/admin/dashboard.php';
     }
 
     // Méthode pour afficher la liste des utilisateurs
     public function users() {
         $users = User::getAll();
+        $content = ""; // Pas nécessaire de définir du contenu ici, tout est géré dans la vue
         require_once __DIR__ . '/../../Views/admin/users/list.php';
     }
 
@@ -24,6 +27,7 @@ class AdminController {
             User::add($_POST);
             header('Location: /index.php?controller=admin&action=users');
         } else {
+            $content = ""; // Pas nécessaire de définir du contenu ici
             require_once __DIR__ . '/../../Views/admin/users/create.php';
         }
     }
@@ -35,6 +39,7 @@ class AdminController {
             header('Location: /index.php?controller=admin&action=users');
         } else {
             $user = User::getById($id);
+            $content = ""; // Pas nécessaire de définir du contenu ici
             require_once __DIR__ . '/../../Views/admin/users/edit.php';
         }
     }
