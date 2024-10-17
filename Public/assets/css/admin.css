@@ -1,3 +1,4 @@
+/* Admin Layout */
 .admin-container {
   display: flex;
   height: 100vh;
@@ -8,6 +9,8 @@
   background-color: #343a40;
   padding: 20px;
   color: #fff;
+  position: fixed; /* Ajout pour le menu fixe */
+  height: 100%;    /* Ajout pour s'assurer que le menu occupe toute la hauteur */
 }
 
 .admin-sidebar .logo img {
@@ -29,20 +32,31 @@
   text-decoration: none;
   font-weight: bold;
   display: block;
+  padding: 10px;  /* Ajout pour un meilleur espacement */
+  background-color: #444;  /* Couleur de fond similaire à dashboard.css */
+  border-radius: 4px;      /* Ajout pour les coins arrondis */
+  transition: background-color 0.3s; /* Transition pour l'hover */
+}
+
+.admin-sidebar nav ul li a:hover {
+  background-color: #555;  /* Effet au survol */
 }
 
 .admin-main {
   flex-grow: 1;
   background-color: #f8f9fa;
   padding: 20px;
+  margin-left: 270px; /* Espace pour le menu fixé */
 }
 
+/* Header du tableau de bord */
 .admin-header {
   background-color: #007bff;
   color: #fff;
   padding: 10px 20px;
 }
 
+/* Contenu du tableau de bord */
 .admin-content {
   margin-top: 20px;
 }
@@ -55,6 +69,7 @@
   margin-bottom: 20px;
 }
 
+/* Table et Cards */
 .table th, .table td {
   vertical-align: middle;
 }

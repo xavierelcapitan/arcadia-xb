@@ -1,0 +1,6 @@
+.DS_Store
+/vendor/
+src/Models/Schedule.php
+Config/Database.php
+src/Views/home.php
+Config/App.php

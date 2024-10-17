@@ -9,7 +9,7 @@
 <body>
     <div class="container mt-5">
         <h1>Liste des utilisateurs</h1>
-        <a href="/admin/addUser" class="btn btn-success mb-3">Ajouter un utilisateur</a>
+        <a href="/index.php?controller=admin&action=createUser" class="btn btn-success mb-3">Ajouter un utilisateur</a>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -28,8 +28,8 @@
                     <td><?= htmlspecialchars($user->first_name) ?></td>
                     <td><?= htmlspecialchars($user->role) ?></td>
                     <td>
-                        <a href="/admin/editUser/<?= $user->id ?>" class="btn btn-primary">Modifier</a>
-                        <a href="/admin/deleteUser/<?= $user->id ?>" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</a>
+                        <a href="/index.php?controller=admin&action=editUser&id=<?= $user->id ?>" class="btn btn-primary">Modifier</a>
+                        <a href="/index.php?controller=admin&action=deleteUser&id=<?= $user->id ?>" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr ?')">Supprimer</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
