@@ -1,5 +1,7 @@
-<h2>Gestion des Utilisateurs</h2>
-<table class="table">
+<!-- users/list.php -->
+
+<a href="/index.php?controller=User&action=createUser" class="btn btn-success">Ajouter un utilisateur</a>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>Nom</th>
@@ -15,11 +17,10 @@
                 <td><?= htmlspecialchars($user->first_name) ?></td>
                 <td><?= htmlspecialchars($user->role) ?></td>
                 <td>
-                    <a href="/admin/users/edit/<?= $user->id ?>" class="btn btn-primary">Modifier</a>
-                    <a href="/admin/users/delete/<?= $user->id ?>" class="btn btn-danger">Supprimer</a>
-                </td>
+                <a href="/index.php?controller=User&action=editUser&id=<?= $user->id ?>" class="btn btn-primary">Modifier</a>
+                <a href="/index.php?controller=User&action=deleteUser&id=<?= $user->id ?>" class="btn btn-danger">Supprimer</a>
+            </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
-<a href="/admin/users/create" class="btn btn-success">Ajouter un utilisateur</a>

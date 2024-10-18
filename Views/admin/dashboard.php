@@ -1,18 +1,14 @@
 <!-- Views/admin/dashboard.php -->
 
-
 <header class="admin-header">
-    <h1>Tableau de bord - Admin</h1>
+    <h1>Section 1 à définir</h1>
 </header>
-
 <main>
-<section class="admin-content">
-    <!-- CONTENU DYNAMIQUE SPÉCIFIQUE AU TABLEAU DE BORD -->
-    <?php if (isset($content)) : ?>
-        <p><?= $content ?></p>
-    <?php else : ?>
-        <p>Bienvenue sur le tableau de bord administrateur.</p>
-    <?php endif; ?>
-</section>
-
+    <section class="admin-content">
+        <!-- CONTENU DYNAMIQUE SPÉCIFIQUE AU TABLEAU DE BORD -->
+        <p>Contenu dynamique spécifique au tableau de bord.</p>
+    </section>
 </main>
+
+
+

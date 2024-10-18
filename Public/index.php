@@ -1,36 +1,26 @@
 <?php
 
-// Définir une constante pour le chemin du projet
-define('ROOT', dirname(__DIR__));
+use App\Config\Autoloader;
 
-// Inclure l'autoloader
-require_once ROOT . '/src/Config/Autoloader.php';
+// Charger l'autoloader
+require_once __DIR__ . '/../src/Config/Autoloader.php';
+Autoloader::register();
 
-// Enregistrer l'autoloader
-\App\Config\Autoloader::register();
+// Récupérer le controller et l'action depuis les paramètres d'URL (ou par défaut)
+$controller = isset($_GET['controller']) ? ucfirst($_GET['controller']) . 'Controller' : 'MainController';
+$action = isset($_GET['action']) ? $_GET['action'] : 'index';
 
-use App\Config\Db;
+// Ajouter le namespace au controller
+$controller = 'App\\Controllers\\' . $controller;
 
-// Récupérer l'instance de la base de données
-$db = Db::getInstance();
+if (class_exists($controller)) {
+    $controllerInstance = new $controller(); // Instancier la classe du controller
 
-// Gérer la requête de l'utilisateur
-$controller = $_GET['controller'] ?? 'Main'; // Contrôleur par défaut
-$action = $_GET['action'] ?? 'index'; // Action par défaut
-
-// Construire le nom complet du contrôleur
-$controllerClass = "\\App\\Controllers\\" . ucfirst($controller) . "Controller";
-
-// Vérifier si la classe du contrôleur existe
-if (class_exists($controllerClass)) {
-    $controllerInstance = new $controllerClass();
-
-    // Vérifier si la méthode d'action existe
     if (method_exists($controllerInstance, $action)) {
-        $controllerInstance->$action();
+        $controllerInstance->$action(); // Appeler la méthode d'action
     } else {
-        throw new \Exception("L'action $action n'existe pas dans le contrôleur $controllerClass.");
+        echo "Action '$action' non trouvée.";
     }
 } else {
-    throw new \Exception("Le contrôleur $controllerClass est introuvable.");
+    echo "Contrôleur '$controller' non trouvé.";
 }

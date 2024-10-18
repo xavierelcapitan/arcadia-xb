@@ -11,11 +11,16 @@ class Autoloader
 
     public static function autoload($class)
     {
-        $class = str_replace('App\\', '', $class); // Enlever le namespace "App"
-        $class = str_replace('\\', '/', $class); // Remplacer les backslashes par des slashes
+        // Remplacer 'App\' par rien pour retrouver le chemin relatif sous 'src'
+        $class = str_replace('App\\', '', $class);
+        
+        // Remplacer les backslashes par des slashes pour obtenir le chemin correct
+        $class = str_replace('\\', '/', $class);
 
-        $file = ROOT . '/src/' . $class . '.php'; // Chemin vers les classes
+        // Générer le chemin complet vers le fichier de classe
+        $file = __DIR__ . '/../' . $class . '.php';
 
+        // Vérifier si le fichier existe et l'inclure
         if (file_exists($file)) {
             require_once $file;
         } else {

@@ -9,7 +9,7 @@
 <body>
     <div class="container mt-5">
         <h1>Modifier un utilisateur</h1>
-        <form action="" method="POST">
+        <form method="post" action="/index.php?controller=User&action=update&id=<?= $user->id ?>">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" value="<?= htmlspecialchars($user->email) ?>" required>

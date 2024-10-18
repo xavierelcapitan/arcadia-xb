@@ -9,7 +9,7 @@
 <body>
     <div class="container mt-5">
         <h1>Ajouter un utilisateur</h1>
-        <form action="" method="POST">
+        <form action="" method="POST" action="/index.php?controller=User&action=store">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required>

@@ -8,16 +8,19 @@ class AdminController {
 
     // Méthode pour afficher le tableau de bord
     public function dashboard() {
-        $users = User::getAll(); // Si nécessaire
+        // Utilise la méthode 'all()' au lieu de 'getAll()'
+        $users = User::all(); 
         $view = __DIR__ . '/../../Views/admin/dashboard.php';
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
 
     // Méthode pour afficher la liste des utilisateurs
     public function users() {
-        $users = User::getAll();
-        $content = ""; // Pas nécessaire de définir du contenu ici, tout est géré dans la vue
-        require_once __DIR__ . '/../../Views/admin/users/list.php';
+        // Utilise la méthode 'all()' au lieu de 'getAll()'
+        $users = User::all(); 
+        $view = __DIR__ . '/../../Views/admin/users/list.php';
+        $pageTitle = 'Gestion des Utilisateurs';
+        require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
 
     // Méthode pour créer un utilisateur
