@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un utilisateur</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
+<!-- users/create.php -->
+   
         <h1>Ajouter un utilisateur</h1>
         <form action="" method="POST" action="/index.php?controller=User&action=store">
             <div class="mb-3">
@@ -29,12 +21,10 @@
             <div class="mb-3">
                 <label for="role" class="form-label">Rôle</label>
                 <select class="form-control" id="role" name="role">
-                    <option value="admin">Admin</option>
-                    <option value="user">Utilisateur</option>
+                    <option value="veterinaire">Vétérinaire</option>
+                    <option value="employe">Employé</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
-    </div>
-</body>
-</html>
+    

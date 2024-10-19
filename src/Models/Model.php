@@ -2,19 +2,22 @@
 
 namespace App\Models;
 
-use App\Config\Db;  // Connexion à la base de données via Db
+use PDO;
+use App\Config\Db;
 
-class Model {
+class Model
+{
     protected $db;
 
-    public function __construct() {
-        $this->db = Db::getInstance();  // Connexion centralisée à la base de données
+    public function __construct()
+    {
+        // Utiliser l'instance de connexion à la base de données définie dans Db.php
+        $this->db = Db::getInstance();
     }
 
-    // Méthodes communes pour les modèles, par exemple :
-    public function query($sql, $params = []) {
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute($params);
-        return $stmt;
+    // Méthode pour récupérer l'instance de la base de données (utilisée dans les classes enfants)
+    protected function getDbInstance()
+    {
+        return $this->db;
     }
 }

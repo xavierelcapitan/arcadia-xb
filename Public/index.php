@@ -4,6 +4,7 @@ use App\Config\Autoloader;
 
 // Charger l'autoloader
 require_once __DIR__ . '/../src/Config/Autoloader.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 Autoloader::register();
 
 // Récupérer le controller et l'action depuis les paramètres d'URL (ou par défaut)

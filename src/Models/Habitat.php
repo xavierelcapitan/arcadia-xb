@@ -4,11 +4,55 @@ namespace App\Models;
 
 use PDO;
 
-class Habitat extends Model {
-
-    public static function getAll() {
-        $db = static::getDB();
+class Habitat extends Model
+{
+    // Récupérer tous les habitats
+    public static function all()
+    {
+        $db = (new self())->getDbInstance();
         $stmt = $db->query('SELECT * FROM habitats');
         return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    // Récupérer un habitat par ID
+    public static function find($id)
+    {
+        $db = (new self())->getDbInstance();
+        $stmt = $db->prepare('SELECT * FROM habitats WHERE id = :id');
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
+    // Ajouter un habitat
+    public static function add($data)
+    {
+        $db = (new self())->getDbInstance();
+        $stmt = $db->prepare('INSERT INTO habitats (name, description, image_url) VALUES (:name, :description, :image_url)');
+        return $stmt->execute([
+            ':name' => $data['name'],
+            ':description' => $data['description'],
+            ':image_url' => $data['image_url']
+        ]);
+    }
+
+    // Mettre à jour un habitat
+    public static function update($id, $data)
+    {
+        $db = (new self())->getDbInstance();
+        $stmt = $db->prepare('UPDATE habitats SET name = :name, description = :description, image_url = :image_url WHERE id = :id');
+        return $stmt->execute([
+            ':id' => $id,
+            ':name' => $data['name'],
+            ':description' => $data['description'],
+            ':image_url' => $data['image_url']
+        ]);
+    }
+
+    // Supprimer un habitat
+    public static function delete($id)
+    {
+        $db = (new self())->getDbInstance();
+        $stmt = $db->prepare('DELETE FROM habitats WHERE id = :id');
+        return $stmt->execute([':id' => $id]);
     }
 }

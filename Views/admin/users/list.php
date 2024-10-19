@@ -18,7 +18,16 @@
                 <td><?= htmlspecialchars($user->role) ?></td>
                 <td>
                 <a href="/index.php?controller=User&action=editUser&id=<?= $user->id ?>" class="btn btn-primary">Modifier</a>
-                <a href="/index.php?controller=User&action=deleteUser&id=<?= $user->id ?>" class="btn btn-danger">Supprimer</a>
+                <form id="deleteForm-<?= $user->id ?>" method="POST" action="/index.php?controller=user&action=deleteUser&id=<?= $user->id ?>" style="display: none;">
+</form>
+
+<a href="#" 
+   class="btn btn-danger"
+   onclick="if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) { document.getElementById('deleteForm-<?= $user->id ?>').submit(); } return false;">
+   Supprimer
+</a>
+
+
             </td>
             </tr>
         <?php endforeach; ?>

@@ -1,28 +1,35 @@
-<!-- Section Habitats -->
-<div class="admin-section">
-                    <h2>Gestion des Habitats</h2>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card">
-                                <h3>Savane</h3>
-                                <p>Informations sur l'habitat...</p>
-                                <a href="/admin/editHabitat/1" class="btn btn-primary">Modifier</a>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <h3>Marais</h3>
-                                <p>Informations sur l'habitat...</p>
-                                <a href="/admin/editHabitat/2" class="btn btn-primary">Modifier</a>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card"><!DOCTYPE html>
+<h1>Liste des habitats</h1>
 
-                                <h3>Jungle</h3>
-                                <p>Informations sur l'habitat...</p>
-                                <a href="/admin/editHabitat/3" class="btn btn-primary">Modifier</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<a href="/index.php?controller=habitat&action=createHabitat" class="btn btn-primary">Ajouter un habitat</a>
+
+<table class="table">
+    <thead>
+        <tr>
+        
+            <th>Nom</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($habitats as $habitat) : ?>
+            <tr>
+                
+                <td><?= htmlspecialchars($habitat->name) ?></td>
+            
+                <td>
+                    <a href="/index.php?controller=habitat&action=editHabitat&id=<?= $habitat->id ?>" class="btn btn-warning">Modifier</a>
+                    <form id="deleteForm-<?= $habitat->id ?>" method="POST" action="/index.php?controller=habitat&action=deleteHabitat&id=<?= $habitat->id ?>" style="display: none;">
+</form>
+
+<a href="#" 
+   class="btn btn-danger"
+   onclick="if (confirm('Êtes-vous sûr de vouloir supprimer cet habitat ?')) { document.getElementById('deleteForm-<?= $habitat->id ?>').submit(); } return false;">
+   Supprimer
+</a>
+
+
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

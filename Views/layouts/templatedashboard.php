@@ -14,19 +14,19 @@
         <div class="row">
 
             <!-- Sidebar -->
-            <aside class="admin-sidebar col-md-2">
+            <aside class="admin-sidebar">
                 <div class="logo">
                     <img src="/assets/images/logo.png" alt="Logo">
                 </div>
 
                 <ul>
-
                     <li><a href="/index.php?controller=admin&action=dashboard">Dashboard</a></li>
                     <li><a href="/index.php?controller=admin&action=users">Utilisateurs</a></li>
                     <li><a href="/index.php?controller=admin&action=horaires">Horaires</a></li>
                     <li><a href="/index.php?controller=admin&action=services">Services</a></li>
                     <li><a href="/index.php?controller=admin&action=animals">Gestion des Animaux</a></li>
-                    <li><a href="/index.php?controller=admin&action=habitats">Habitats</a></li>
+                    <li><a href="/index.php?controller=habitat&action=listHabitats">Habitats</a>
+                    </li>
                     <li><a href="/index.php?controller=admin&action=stats">Stats</a></li>
                     <li><a href="/index.php?controller=admin&action=reports">Comptes Rendus</a></li>
                     <li><a href="/index.php?controller=auth&action=logout">Log Out</a></li>
@@ -34,7 +34,7 @@
             </aside>
 
             <!-- Main Content -->
-            <main class="admin-main col-md-10">
+            <main class="admin-main">
                 <!-- Header (dynamic) -->
                 <header class="admin-header">
                     <h1><?= $pageTitle ?? 'Tableau de bord' ?></h1>
@@ -45,19 +45,18 @@
 
                 <!-- Main content (dynamic) -->
                 <section class="admin-content">
-                    <?php require_once $view; ?>
+                <?php require_once $view; ?>
                 </section>
+
+                <!-- Footer -->
+                <footer class="footer">
+                    <div class="container">
+                        <p class="text-center">© 2024 - Admin Panel</p>
+                    </div>
+                </footer>
             </main>
         </div>
     </div>
-
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p class="text-center">© 2024 - Admin Panel</p>
-        </div>
-    </footer>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
