@@ -15,13 +15,16 @@
         <img src="<?= htmlspecialchars($animal->image_url) ?>" alt="Image de l'animal" width="100">
     </div>
     <div class="mb-3">
-        <label for="habitat_id" class="form-label">Habitat</label>
-        <select class="form-control" id="habitat_id" name="habitat_id" required>
-            <!-- Boucle pour afficher les habitats disponibles -->
-            <?php foreach ($habitats as $habitat): ?>
-                <option value="<?= $habitat->id ?>" <?= $animal->habitat_id === $habitat->id ? 'selected' : '' ?>><?= htmlspecialchars($habitat->name) ?></option>
-            <?php endforeach; ?>
-        </select>
-    </div>
+    <label for="habitat_id" class="form-label">Habitat</label>
+    <select class="form-control" id="habitat_id" name="habitat_id" required>
+        <!-- Boucle pour afficher les habitats disponibles -->
+        <?php foreach ($habitats as $habitat): ?>
+            <option value="<?= $habitat->id ?>" <?= $habitat->id == $animal->habitat_id ? 'selected' : '' ?>>
+                <?= htmlspecialchars($habitat->name) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
+
     <button type="submit" class="btn btn-primary">Modifier</button>
 </form>

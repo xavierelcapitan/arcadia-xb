@@ -30,22 +30,28 @@
                     <li><a href="/index.php?controller=admin&action=users">Utilisateurs</a></li>
                     <li><a href="/index.php?controller=admin&action=horaires">Horaires</a></li>
                     <li><a href="/index.php?controller=admin&action=services">Services</a></li>
-                    <li><a href="/index.php?controller=admin&action=animals">Gestion des Animaux</a></li>
-                    <li><a href="/index.php?controller=habitat&action=listHabitats">Habitats</a></li>
-                    <li><a href="/index.php?controller=admin&action=stats">Stats</a></li>
-                    <li><a href="/index.php?controller=admin&action=reports">Comptes Rendus</a></li>
-                    <li><a href="/index.php?controller=auth&action=logout">Log Out</a></li>
+
+                   
+                    
+                   
+                    
                 </ul>
-                <li>
-    <a href="#">Gestion des Animaux</a>
+                
+                    <hr>
+    <h4>Gestion des Animaux</h4>
     <ul>
         <li><a href="/index.php?controller=animal&action=listAnimals">Liste des Animaux</a></li>
-        <li><a href="/index.php?controller=animal&action=createAnimal">Ajouter un Animal</a></li>
-        <li><a href="/index.php?controller=animal&action=editAnimal">Modifier un Animal</a></li>
-        <li><a href="/index.php?controller=animal&action=showAnimalDetails">Détails d'un Animal</a></li>
-        <li><a href="/index.php?controller=animal&action=deleteAnimal">Supprimer un Animal</a></li>
+        <li><a href="/index.php?controller=habitat&action=listHabitats">Habitats</a></li>
+        <li><a href="/index.php?controller=admin&action=reports">Résumés des Rapports</a></li>
+        <li><a href="/index.php?controller=admin&action=stats">Stats</a></li>
     </ul>
 </li>
+
+<div>
+<a href="/index.php?controller=auth&action=logout">Log Out</a>
+</div>
+
+
 
             </aside>
 
@@ -67,7 +73,7 @@
                 <!-- Footer -->
                 <footer class="footer">
                     <div class="container">
-                        <p class="text-center">© 2024 - Admin Panel</p>
+                        <p class="text-center">© 2024 - Tableau de bord Admin</p>
                     </div>
                 </footer>
             </main>

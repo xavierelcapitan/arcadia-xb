@@ -26,6 +26,33 @@ class Animal extends Model
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
+       // Récupérer TOUS les animaux avec le nom des habitats
+   public static function allWithHabitatName()
+   {
+       $db = (new self())->getDbInstance();
+       $stmt = $db->query("
+           SELECT animals.*, habitats.name AS habitat_name
+           FROM animals
+           JOIN habitats ON animals.habitat_id = habitats.id
+       ");
+       return $stmt->fetchAll(PDO::FETCH_OBJ);
+   }
+   
+   // récupère UN SEUL animal avec l'habitat spécifique par son ID => pages de détails ou de modification.
+   public static function findWithHabitat($id)
+   {
+       $db = (new self())->getDbInstance();
+       $stmt = $db->prepare('
+           SELECT animals.*, habitats.name AS habitat_name
+           FROM animals
+           JOIN habitats ON animals.habitat_id = habitats.id
+           WHERE animals.id = :id
+       ');
+       $stmt->execute([':id' => $id]);
+       return $stmt->fetch(PDO::FETCH_OBJ);
+   }
+   
+
     // Ajouter un nouvel animal
     public static function add($data)
     {
@@ -61,3 +88,4 @@ class Animal extends Model
         return $stmt->execute([':id' => $id]);
     }
 }
+
