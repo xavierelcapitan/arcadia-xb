@@ -1,3 +1,4 @@
+<!-- Views/admin/Animals/create.php -->
 <h1>Ajouter un animal</h1>
 
 <form method="POST" action="/index.php?controller=animal&action=createAnimal" enctype="multipart/form-data">

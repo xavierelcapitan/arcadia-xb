@@ -4,3 +4,5 @@ src/Models/Schedule.php
 Config/Database.php
 src/Views/home.php
 Config/App.php
+/Public/assets/uploads/
+/Public/assets/images/

@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Model;
 use PDO;
 
 class Habitat extends Model
 {
+
+    protected static $table = 'habitats';
+
     // Récupérer tous les habitats
     public static function all()
     {

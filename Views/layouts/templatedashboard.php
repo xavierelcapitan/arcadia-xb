@@ -36,6 +36,17 @@
                     <li><a href="/index.php?controller=admin&action=reports">Comptes Rendus</a></li>
                     <li><a href="/index.php?controller=auth&action=logout">Log Out</a></li>
                 </ul>
+                <li>
+    <a href="#">Gestion des Animaux</a>
+    <ul>
+        <li><a href="/index.php?controller=animal&action=listAnimals">Liste des Animaux</a></li>
+        <li><a href="/index.php?controller=animal&action=createAnimal">Ajouter un Animal</a></li>
+        <li><a href="/index.php?controller=animal&action=editAnimal">Modifier un Animal</a></li>
+        <li><a href="/index.php?controller=animal&action=showAnimalDetails">Détails d'un Animal</a></li>
+        <li><a href="/index.php?controller=animal&action=deleteAnimal">Supprimer un Animal</a></li>
+    </ul>
+</li>
+
             </aside>
 
             <!-- Main Content -->
