@@ -7,8 +7,8 @@
     </div>
     <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <textarea class="form-control" id="description" name="description" required><?= htmlspecialchars($habitat->description) ?></textarea>
-    </div>
+        <textarea class="form-control tinymce" id="description" name="description"><?= isset($habitat) ? htmlspecialchars($habitat->description) : '' ?></textarea>
+
     <div class="mb-3">
         <label for="image_url" class="form-label">Image</label>
         <input type="file" class="form-control" id="image_url" name="image_url">
@@ -16,14 +16,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
 </form>
-
-<!-- Script TinyMCE -->
-<script src="https://cdn.tiny.cloud/1/xxwj3ndzqvtjri3i2yctdbu6s1pzq97jj4hs1d5a2fdgvuu4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-  tinymce.init({
-    selector: 'textarea#description'
-  });
-</script>
 
 
 <?php if (!empty($errors)) : ?>
