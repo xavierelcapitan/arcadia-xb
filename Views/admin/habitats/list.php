@@ -21,11 +21,16 @@
                     <form id="deleteForm-<?= $habitat->id ?>" method="POST" action="/index.php?controller=habitat&action=deleteHabitat&id=<?= $habitat->id ?>" style="display: none;">
 </form>
 
+<form id="deleteForm-<?= $habitat->id ?>" method="POST" action="/index.php?controller=habitat&action=deleteHabitat&id=<?= $habitat->id ?>" style="display: none;">
+</form>
+
 <a href="#" 
    class="btn btn-danger"
    onclick="if (confirm('Êtes-vous sûr de vouloir supprimer cet habitat ?')) { document.getElementById('deleteForm-<?= $habitat->id ?>').submit(); } return false;">
    Supprimer
 </a>
+
+
 
 
                 </td>

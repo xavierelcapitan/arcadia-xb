@@ -34,8 +34,7 @@ class Habitat extends Model
             ':image_url' => $data['image_url']
         ]);
     }
-
-    // Mettre à jour un habitat
+    
     public static function update($id, $data)
     {
         $db = (new self())->getDbInstance();
@@ -47,6 +46,7 @@ class Habitat extends Model
             ':image_url' => $data['image_url']
         ]);
     }
+    
 
     // Supprimer un habitat
     public static function delete($id)

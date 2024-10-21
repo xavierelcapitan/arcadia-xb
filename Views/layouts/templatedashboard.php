@@ -6,6 +6,9 @@
     <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/admin.css">
+    <!-- TinyMCE -->
+    <script src="https://cdn.tiny.cloud/1/xxwj3ndzqvtjri3i2yctdbu6s1pzq97jj4hs1d5a2fdgvuu4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
 </head>
 <body>
 
@@ -18,7 +21,6 @@
                 <div class="logo">
                     <img src="/assets/images/logo.png" alt="Logo">
                 </div>
-
                 <ul>
                     <li><a href="/index.php?controller=admin&action=dashboard">Dashboard</a></li>
                     <li><a href="/index.php?controller=admin&action=users">Utilisateurs</a></li>
@@ -61,5 +63,10 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/burger-menu.js"></script>
+    <script>
+  tinymce.init({
+    selector: 'textarea#tiny'
+  });
+</script>
 </body>
 </html>
