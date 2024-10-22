@@ -1,5 +1,5 @@
 <?php
-
+// Models/Model.php
 namespace App\Models;
 
 use PDO;
@@ -7,17 +7,16 @@ use App\Config\Db;
 
 class Model
 {
-    protected $db;
+    protected static $db;
 
-    public function __construct()
+    // Méthode statique pour récupérer l'instance de la base de données
+    protected static function getDbInstance()
     {
-        // Utiliser l'instance de connexion à la base de données définie dans Db.php
-        $this->db = Db::getInstance();
-    }
-
-    // Méthode pour récupérer l'instance de la base de données (utilisée dans les classes enfants)
-    protected function getDbInstance()
-    {
-        return $this->db;
+        if (!self::$db) {
+            // Connexion à la base de données via Db.php
+            self::$db = Db::getInstance();
+        }
+        return self::$db;
     }
 }
+

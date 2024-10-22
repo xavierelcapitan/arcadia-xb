@@ -9,6 +9,23 @@ class Animal extends Model
 {
     protected static $table = 'animals'; // Associer la table "animals"
 
+     // Méthode pour récupérer toutes les races distinctes depuis la table animals
+     public static function getDistinctRaces()
+     {
+         $db = (new self())->getDbInstance();
+         $stmt = $db->query("SELECT DISTINCT race FROM animals WHERE race IS NOT NULL AND race != ''");
+         return $stmt->fetchAll(PDO::FETCH_OBJ);
+     }
+ 
+
+      // Méthode pour récupérer tous les types de nourriture distincts depuis la table animals
+    public static function getDistinctFoodTypes()
+    {
+        $db = (new self())->getDbInstance();
+        $stmt = $db->query("SELECT DISTINCT food_type FROM animals WHERE food_type IS NOT NULL AND food_type != ''");
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
     // Récupérer tous les animaux
     public static function all()
     {
@@ -57,27 +74,25 @@ class Animal extends Model
     public static function add($data)
     {
         $db = (new self())->getDbInstance();
-        $stmt = $db->prepare('INSERT INTO animals (name, race, habitat_id, image_url) VALUES (:name, :race, :habitat_id, :image_url)');
-        return $stmt->execute([
-            ':name' => $data['name'],
-            ':race' => $data['race'],
-            ':habitat_id' => $data['habitat_id'],
-            ':image_url' => $data['image_url'],
-        ]);
+        $stmt = $db->prepare("
+            INSERT INTO animals (name, race, age, weight, habitat_id, food_type, food_quantity, image_url, created_at)
+            VALUES (:name, :race, :age, :weight, :habitat_id, :food_type, :food_quantity, :image_url, NOW())
+        ");
+        $stmt->execute($data);
     }
 
     // Mettre à jour un animal
     public static function update($id, $data)
     {
         $db = (new self())->getDbInstance();
-        $stmt = $db->prepare('UPDATE animals SET name = :name, race = :race, habitat_id = :habitat_id, image_url = :image_url WHERE id = :id');
-        return $stmt->execute([
-            ':id' => $id,
-            ':name' => $data['name'],
-            ':race' => $data['race'],
-            ':habitat_id' => $data['habitat_id'],
-            ':image_url' => $data['image_url'],
-        ]);
+        $stmt = $db->prepare("
+            UPDATE animals 
+            SET name = :name, race = :race, age = :age, weight = :weight, habitat_id = :habitat_id, 
+                food_type = :food_type, food_quantity = :food_quantity, image_url = :image_url
+            WHERE id = :id
+        ");
+        $data['id'] = $id;
+        $stmt->execute($data);
     }
 
     // Supprimer un animal
