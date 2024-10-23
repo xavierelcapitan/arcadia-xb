@@ -5,7 +5,10 @@ namespace App\Controllers;
 use App\Models\Animal;
 use App\Models\Habitat;
 use App\Models\FoodType;
+use App\Models\FeedingReport;
 use App\Models\VeterinaryReport;
+use App\Models\User;
+use App\Config\SessionManager;
 use PDO;
 
 class AnimalController
@@ -27,17 +30,17 @@ class AnimalController
     // Créer un nouvel animal
     public function createAnimal()
     {
-        // Récupérer la liste des habitats, races, et types de nourriture pour le dropdown
         $habitats = Habitat::all();
         $races = Animal::getDistinctRaces();
         $foodTypes = Animal::getDistinctFoodTypes();
         $errors = [];
-
+        $imageUrl = null;
+    
         // Si la requête est POST (soumission du formulaire)
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $newFoodType = $_POST['new_food_type']; // Nouveau type de nourriture saisi
-            $imageUrl = null;
-
+            $newFoodType = trim($_POST['new_food_type']);
+            $newRace = trim($_POST['new_race']);
+    
             // Validation de base des champs
             if (empty($_POST['name'])) {
                 $errors[] = "Le nom de l'animal est obligatoire.";
@@ -48,33 +51,39 @@ class AnimalController
             if (empty($_POST['weight']) || !is_numeric($_POST['weight'])) {
                 $errors[] = "Le poids de l'animal est obligatoire et doit être un nombre.";
             }
-
-            // Si un nouveau type de nourriture est ajouté
+    
+            // Sélection ou ajout du type de nourriture
             if (!empty($newFoodType)) {
-                $selectedFoodType = $newFoodType;  // Utilisation du nouveau type de nourriture directement
+                $selectedFoodType = $newFoodType;
             } else {
-                $selectedFoodType = $_POST['food_type'];  // Type de nourriture sélectionné dans le dropdown
+                $selectedFoodType = $_POST['food_type'];
             }
-
-            
+    
+            // Sélection ou ajout de la race
+            if (!empty($newRace)) {
+                $selectedRace = $newRace;  // Utiliser la nouvelle race
+            } else {
+                $selectedRace = $_POST['race'];  // Utiliser la race sélectionnée
+            }
+    
             // Gestion de l'image (facultatif)
             if (isset($_FILES['image_url']) && $_FILES['image_url']['error'] === UPLOAD_ERR_OK) {
                 $targetDirectory = __DIR__ . '/../../Public/assets/uploads/';
                 $fileName = basename($_FILES['image_url']['name']);
                 $targetFile = $targetDirectory . $fileName;
-
+    
                 if (move_uploaded_file($_FILES['image_url']['tmp_name'], $targetFile)) {
                     $imageUrl = '/assets/uploads/' . $fileName;
                 } else {
                     $errors[] = 'Erreur lors de l\'upload de l\'image.';
                 }
             }
-
-            // S'il n'y a pas d'erreurs, on ajoute l'animal
+    
+            // S'il n'y a pas d'erreurs, on ajoute l'animal avec la race sélectionnée ou saisie
             if (empty($errors)) {
                 Animal::add([
                     'name' => $_POST['name'],
-                    'race' => $_POST['race'],
+                    'race' => $selectedRace,  // Utilisation correcte de la race
                     'age' => $_POST['age'],
                     'weight' => $_POST['weight'],
                     'habitat_id' => $_POST['habitat_id'],
@@ -82,17 +91,19 @@ class AnimalController
                     'food_quantity' => $_POST['food_quantity'],
                     'image_url' => $imageUrl,
                 ]);
-
-                // Redirection vers la liste des animaux
+    
+                // Redirection après la création
                 header('Location: /index.php?controller=animal&action=listAnimals');
                 exit;
             }
         }
-
+    
         // Transmettre les variables à la vue
         $view = __DIR__ . '/../../Views/admin/animals/create.php';
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
+    
+
 
     // Modifier un animal existant
     public function editAnimal()
@@ -192,22 +203,47 @@ class AnimalController
     // Afficher les détails d'un animal et ses rapports vétérinaires
     public function showAnimalDetails()
     {
+        // Démarrer la session si nécessaire
+        SessionManager::start();
+    
+        // Vérifier si l'ID de l'animal est bien fourni
         if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
             header('Location: /index.php?controller=animal&action=listAnimals');
             exit;
         }
-
+    
         $animal_id = $_GET['id'];
+    
+        // Récupérer l'animal avec son habitat
         $animal = Animal::findWithHabitat($animal_id);
-
+    
         if (!$animal) {
             header('Location: /index.php?controller=animal&action=listAnimals');
             exit;
         }
-
+    
+        // Récupérer les types de nourriture associés
+        $foodTypes = Animal::getDistinctFoodTypes();
+    
+        // Récupérer les rapports vétérinaires
         $veterinary_reports = VeterinaryReport::getByAnimalId($animal_id);
-
+    
+        // Récupérer les rapports de nourriture pour cet animal
+$feeding_reports = FeedingReport::getByAnimalId($animal->id);
+    
+        // Récupérer l'utilisateur connecté
+        $user_id = SessionManager::get('user_id');
+        if (!$user_id) {
+            header('Location: /index.php?controller=auth&action=showLogin');
+            exit;
+        }
+    
+        // Récupérer les informations de l'utilisateur
+        $user = User::find($user_id);
+    
+        // Transmettre les variables à la vue
         $view = __DIR__ . '/../../Views/admin/animals/details.php';
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
+    
 }

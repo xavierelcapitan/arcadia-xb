@@ -3,13 +3,24 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Config\SessionManager; 
 
 class AdminController {
 
     // Méthode pour afficher le tableau de bord
-    public function dashboard() {
-        // Utilise la méthode 'all()' au lieu de 'getAll()'
-        $users = User::all(); 
+    public function dashboard()
+    {
+        // Démarrer la session
+        SessionManager::start();
+
+        // Vérifier si l'utilisateur est connecté
+        if (!SessionManager::has('user_id')) {
+            // Rediriger vers la page de login si non connecté
+            header('Location: /index.php?controller=auth&action=showLogin');
+            exit;
+        }
+
+        // Si connecté, afficher le dashboard
         $view = __DIR__ . '/../../Views/admin/dashboard.php';
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }

@@ -7,10 +7,9 @@
     </div>
 
     <div class="mb-3">
-    <label for="image" class="form-label">Image de l'animal</label>
-    <input type="file" class="form-control" id="image" name="image">
-</div>
-
+        <label for="image_url" class="form-label">Image de l'animal</label>
+        <input type="file" class="form-control" id="image_url" name="image_url">
+    </div>
 
     <div class="mb-3">
         <label for="habitat" class="form-label">Habitat</label>
@@ -23,14 +22,16 @@
     </div>
 
     <div class="mb-3">
-        <label for="race" class="form-label">Race</label>
-        <select class="form-control" id="race" name="race">
-            <option value="">Sélectionnez une race</option>
-            <?php foreach ($races as $race): ?>
-                <option value="<?= htmlspecialchars($race->race) ?>"><?= htmlspecialchars($race->race) ?></option>
-            <?php endforeach; ?>
-        </select>
-    </div>
+    <label for="race" class="form-label">Race</label>
+    <select class="form-control" id="race" name="race">
+        <option value="">Sélectionnez une race</option>
+        <?php foreach ($races as $race): ?>
+            <option value="<?= htmlspecialchars($race->race) ?>"><?= htmlspecialchars($race->race) ?></option>
+        <?php endforeach; ?>
+    </select>
+    <input type="text" class="form-control mt-2" id="new_race" name="new_race" placeholder="Ajouter une nouvelle race">
+</div>
+
 
     <div class="mb-3">
     <label for="food_type" class="form-label">Type de nourriture</label>

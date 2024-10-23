@@ -6,6 +6,8 @@ use PDO;
 
 class User extends Model
 {
+
+    protected static $table = 'users';
     // Récupérer tous les utilisateurs
     public static function all()
     {
@@ -31,19 +33,27 @@ class User extends Model
         return $stmt->execute([':id' => $id]);
     }
 
-    // Ajouter un utilisateur
-    public static function add($data)
-    {
-        $db = (new self())->getDbInstance();
-        $stmt = $db->prepare('INSERT INTO users (email, password, first_name, last_name, role) VALUES (:email, :password, :first_name, :last_name, :role)');
-        return $stmt->execute([
-            ':email' => $data['email'],
-            ':password' => password_hash($data['password'], PASSWORD_DEFAULT),
-            ':first_name' => $data['first_name'],
-            ':last_name' => $data['last_name'],
-            ':role' => $data['role']
-        ]);
-    }
+ // Ajouter un utilisateur avec mot de passe haché en Argon2id
+ public static function add($data)
+ {
+     $db = (new self())->getDbInstance();
+     $stmt = $db->prepare('INSERT INTO users (email, password, first_name, last_name, role) VALUES (:email, :password, :first_name, :last_name, :role)');
+
+ // Utilisation d'Argon2id pour hacher le mot de passe
+ $hashedPassword = password_hash($data['password'], PASSWORD_ARGON2ID, [
+    'memory_cost' => 1 << 17, // 128 MB
+    'time_cost' => 4,         // 4 itérations
+    'threads' => 2            // 2 threads
+]);
+
+     return $stmt->execute([
+         ':email' => $data['email'],
+         ':password' => password_hash($data['password'], PASSWORD_ARGON2ID), // Utilisation d'Argon2id
+         ':first_name' => $data['first_name'],
+         ':last_name' => $data['last_name'],
+         ':role' => $data['role']
+     ]);
+ }
 
     // Mettre à jour un utilisateur
     public static function update($id, $data)
@@ -77,4 +87,16 @@ class User extends Model
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
+
+
+    // Méthode pour trouver un utilisateur par email
+    public static function findByEmail($email)
+    {
+        $db = (new self())->getDbInstance();
+        $stmt = $db->prepare('SELECT * FROM users WHERE email = :email');
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
 }

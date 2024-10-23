@@ -16,6 +16,8 @@ class Animal extends Model
          $stmt = $db->query("SELECT DISTINCT race FROM animals WHERE race IS NOT NULL AND race != ''");
          return $stmt->fetchAll(PDO::FETCH_OBJ);
      }
+
+     
  
 
       // Méthode pour récupérer tous les types de nourriture distincts depuis la table animals
@@ -80,6 +82,10 @@ class Animal extends Model
         ");
         $stmt->execute($data);
     }
+
+
+
+    
 
     // Mettre à jour un animal
     public static function update($id, $data)

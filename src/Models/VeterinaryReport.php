@@ -25,15 +25,12 @@ class VeterinaryReport extends Model {
     }
 
     // Récupérer les rapports vétérinaires pour un animal donné
+
     public static function getByAnimalId($animal_id)
     {
-        // Utiliser l'instance de la base de données
         $db = (new self())->getDbInstance();
-
-        // Préparer la requête pour récupérer les rapports liés à un animal
-        $stmt = $db->prepare('SELECT * FROM veterinary_reports WHERE animal_id = :animal_id');
-        $stmt->execute(['animal_id' => $animal_id]);
-
+        $stmt = $db->prepare("SELECT * FROM veterinary_reports WHERE animal_id = :animal_id");
+        $stmt->execute([':animal_id' => $animal_id]);
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 }

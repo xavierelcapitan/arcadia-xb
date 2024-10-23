@@ -10,21 +10,29 @@ class UserController
     public function createUser()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            try {
-                User::add($_POST);
-                header('Location: /index.php?controller=admin&action=users');
-                exit;
-            } catch (\Exception $e) {
-                // Gérer l'erreur et afficher le message
-                $error = $e->getMessage();
-                $view = __DIR__ . '/../../Views/admin/users/create.php';
-                require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
-            }
-        } else {
-            // Affichage du formulaire de création
-            $view = __DIR__ . '/../../Views/admin/users/create.php';
-            require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $firstName = $_POST['first_name'];
+            $lastName = $_POST['last_name'];
+            $role = $_POST['role']; // Rôle sélectionné dans le formulaire
+
+            // Ajouter l'utilisateur via la méthode dans le modèle
+            User::add([
+                'email' => $email,
+                'password' => $password,
+                'first_name' => $firstName,
+                'last_name' => $lastName,
+                'role' => $role
+            ]);
+
+            // Rediriger après la création
+            header('Location: /index.php?controller=user&action=listUsers');
+            exit;
         }
+
+        // Afficher le formulaire de création d'utilisateur
+        $view = __DIR__ . '/../../Views/admin/users/create.php';
+        require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
 
     // Modifier un utilisateur
