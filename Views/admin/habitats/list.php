@@ -30,6 +30,8 @@
    Supprimer
 </a>
 
+<a href="/index.php?controller=habitatReport&action=showReport&habitat_id=<?= $habitat->id ?>" class="btn btn-info">Rapport du vétérinaire</a>
+
 
 
 

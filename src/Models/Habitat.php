@@ -26,6 +26,15 @@ class Habitat extends Model
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
+       // Méthode pour récupérer un habitat par son ID
+       public static function findById($id)
+       {
+           $db = self::getDbInstance();
+           $stmt = $db->prepare("SELECT * FROM habitats WHERE id = :id");
+           $stmt->execute(['id' => $id]);
+           return $stmt->fetch(PDO::FETCH_OBJ);
+       }
+
     // Ajouter un habitat
     public static function add($data)
     {

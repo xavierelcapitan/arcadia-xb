@@ -6,7 +6,7 @@
 <p><strong>État de santé :</strong> <?= htmlspecialchars($report->health_status) ?></p>
 <p><strong>Nourriture donnée :</strong> <?= htmlspecialchars($report->food_given) ?></p>
 <p><strong>Quantité de nourriture :</strong> <?= htmlspecialchars($report->food_quantity) ?> g</p>
-<p><strong>Notes supplémentaires :</strong> <?= htmlspecialchars($report->additional_notes) ?></p>
+<p><strong>Notes supplémentaires :</strong> <?= $report->additional_notes ?></p>
 
 <a href="/index.php?controller=animal&action=showAnimalDetails&id=<?= $report->animal_id ?>" class="btn btn-secondary">Retour</a>
 

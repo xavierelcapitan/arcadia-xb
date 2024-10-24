@@ -241,9 +241,13 @@ $feeding_reports = FeedingReport::getByAnimalId($animal->id);
         // Récupérer les informations de l'utilisateur
         $user = User::find($user_id);
     
-        // Transmettre les variables à la vue
+         // Transmettre les données à la vue
         $view = __DIR__ . '/../../Views/admin/animals/details.php';
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
     
 }
+
+
+    
+      

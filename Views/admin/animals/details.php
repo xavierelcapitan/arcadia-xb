@@ -22,11 +22,28 @@ $user_role = SessionManager::get('user_role');
 <h1>Détails de l'animal</h1>
 
 <div>
-    <h2><?= htmlspecialchars($animal->name) ?></h2>
-    <p><strong>Race : </strong><?= htmlspecialchars($animal->race) ?></p>
-    <p><strong>Habitat : </strong><?= htmlspecialchars($animal->habitat_name) ?></p>
+    <!-- Image de l'animal -->
     <img src="<?= htmlspecialchars($animal->image_url) ?>" alt="Image de l'animal" width="200">
+
+    <!-- Nom de l'animal -->
+    <h2>Nom : <?= htmlspecialchars($animal->name) ?></h2>
+
+    <!-- Race de l'animal -->
+    <p><strong>Race : </strong><?= htmlspecialchars($animal->race) ?></p>
+
+    <!-- Âge de l'animal -->
+    <p><strong>Âge : </strong><?= htmlspecialchars($animal->age) ?> ans</p>
+
+    <!-- Poids de l'animal -->
+    <p><strong>Poids : </strong><?= htmlspecialchars($animal->weight) ?> kg</p>
+
+    <!-- Habitat de l'animal -->
+    <p><strong>Habitat : </strong><?= htmlspecialchars($animal->habitat_name) ?></p>
+
+    <!-- Type de nourriture de l'animal -->
+    <p><strong>Type de nourriture : </strong><?= htmlspecialchars($animal->food_type) ?></p>
 </div>
+
 
 <!-- Admin : Boutons Modifier et Supprimer -->
 <?php if ($user_role == 'admin'): ?>

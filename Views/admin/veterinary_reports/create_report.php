@@ -44,7 +44,9 @@
 
     <div class="mb-3">
         <label for="additional_notes" class="form-label">Recommandations supplémentaires</label>
-        <textarea class="form-control" id="additional_notes" name="additional_notes"></textarea>
+        <textarea class="form-control tinymce" id="additional_notes" name="additional_notes"></textarea>
+
+    
     </div>
 
     <button type="submit" class="btn btn-primary">Ajouter le rapport</button>

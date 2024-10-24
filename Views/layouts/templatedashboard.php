@@ -96,19 +96,28 @@ if (isset($view)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- TinyMCE -->
-    <script src="https://cdn.tiny.cloud/1/xxwj3ndzqvtjri3i2yctdbu6s1pzq97jj4hs1d5a2fdgvuu4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<!-- TinyMCE -->
+<script src="https://cdn.tiny.cloud/1/xxwj3ndzqvtjri3i2yctdbu6s1pzq97jj4hs1d5a2fdgvuu4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
   tinymce.init({
-    selector: 'textarea.tinymce', // Utilise un sélecteur de classe spécifique
-    plugins: 'advlist autolink lists link image charmap print preview anchor',
-    toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+    selector: 'textarea.tinymce', 
+    plugins: 'lists', 
+    toolbar: 'undo redo | bold | alignleft aligncenter alignright alignjustify | bullist numlist', 
+    menubar: false, 
+    valid_styles: {
+      '*': 'text-align' 
+    },
     setup: function(editor) {
       editor.on('change', function() {
-        tinymce.triggerSave();  // Forcer la sauvegarde avant soumission du formulaire
+        tinymce.triggerSave();  
       });
-    }
+    },
+    content_css: false, 
+    forced_root_block: '', 
   });
 </script>
+
+
 
 
 
