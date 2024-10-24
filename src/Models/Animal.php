@@ -19,14 +19,14 @@ class Animal extends Model
 
      
  
+ // Récupérer les types de nourriture distincts de la table animals
+ public static function getDistinctFoodTypes()
+ {
+     $db = self::getDbInstance();
+     $stmt = $db->query("SELECT DISTINCT food_type FROM animals");
+     return $stmt->fetchAll(PDO::FETCH_OBJ);
+ }
 
-      // Méthode pour récupérer tous les types de nourriture distincts depuis la table animals
-    public static function getDistinctFoodTypes()
-    {
-        $db = (new self())->getDbInstance();
-        $stmt = $db->query("SELECT DISTINCT food_type FROM animals WHERE food_type IS NOT NULL AND food_type != ''");
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }
 
     // Récupérer tous les animaux
     public static function all()

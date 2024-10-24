@@ -1,43 +1,50 @@
-<?php 
+<?php
 
-namespace App\Models;
+namespace App\Controllers;
 
-use PDO;
+use App\Models\VeterinaryReport;
+use App\Config\SessionManager;
+use App\Models\Animal;
 
-class VeterinaryReport extends Model
+
+class VeterinaryReportController
 {
-    protected static $table = 'veterinary_reports';
-
-   // Récupérer les rapports vétérinaires par ID d'animal
-   public static function getByAnimalId($animal_id)
-   {
-       $db = (new self())->getDbInstance();
-       $stmt = $db->prepare("SELECT * FROM veterinary_reports WHERE animal_id = :animal_id");
-       $stmt->execute([':animal_id' => $animal_id]);
-       return $stmt->fetchAll(PDO::FETCH_OBJ);
-   }
-
-    public function addReport()
+    // Afficher le formulaire pour ajouter un rapport vétérinaire
+    public function createReport()
     {
+        SessionManager::start();
+
+
+            // Vérification des types de nourriture récupérés
+$foodTypes = Animal::getDistinctFoodTypes();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
                 'animal_id' => $_POST['animal_id'],
-                'user_id' => $_SESSION['user_id'], // Vétérinaire connecté
-                'last_checkup_date' => date('Y-m-d'),
+                'user_id' => SessionManager::get('user_id'), // Récupérer l'utilisateur connecté
+                'last_checkup_date' => $_POST['last_checkup_date'],
                 'health_status' => $_POST['health_status'],
                 'food_given' => $_POST['food_given'],
                 'food_quantity' => $_POST['food_quantity'],
-                'additional_notes' => $_POST['additional_notes'],
+                'additional_notes' => $_POST['additional_notes']
             ];
-    
+
+
+            // Ajouter le rapport via le modèle
             VeterinaryReport::add($data);
-    
-            header('Location: /index.php?controller=animal&action=details&id=' . $_POST['animal_id']);
+
+            // Rediriger après l'ajout du rapport
+            header('Location: /index.php?controller=animal&action=showAnimalDetails&id=' . $_POST['animal_id']);
             exit;
         }
 
-}
+        // Récupérer l'ID de l'animal pour lequel ajouter le rapport
+        $animal_id = $_GET['animal_id'];
 
-}
+    
 
-?>
+        // Afficher la vue du formulaire d'ajout
+        $view = __DIR__ . '/../../Views/admin/veterinary_reports/create_report.php';
+        require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
+    }
+}
