@@ -1,3 +1,5 @@
+<!-- Views/admin/habitats/edit.php -->
+ <!-- modification du contenu de l'habitat -->
 <h1>Modifier un habitat</h1>
 
 <form method="POST" action="/index.php?controller=habitat&action=editHabitat&id=<?= $habitat->id ?>" enctype="multipart/form-data">

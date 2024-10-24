@@ -1,3 +1,6 @@
+<!-- Views/admin/habitats/list.php -->
+<!-- Affiche la liste des habitats -->
+
 <h1>Liste des habitats</h1>
 
 <a href="/index.php?controller=habitat&action=createHabitat" class="btn btn-primary">Ajouter un habitat</a>
@@ -30,7 +33,8 @@
    Supprimer
 </a>
 
-<a href="/index.php?controller=habitatReport&action=showReport&habitat_id=<?= $habitat->id ?>" class="btn btn-info">Rapport du vétérinaire</a>
+<a href="/index.php?controller=habitatReport&action=showReports&habitat_id=<?= htmlspecialchars($habitat->id) ?>" class="btn btn-info">Voir les rapports vétérinaires</a>
+
 
 
 

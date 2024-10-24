@@ -1,20 +1,36 @@
-<h1>Modifier le Rapport de l'Habitat : <?= htmlspecialchars($habitat->name ?? 'Nom de l\'habitat non trouvé') ?></h1>
+<!-- Views/admin/habitats/report.php -->
+<h3>Rapports Vétérinaires pour l'Habitat : <?= htmlspecialchars($habitat->name ?? 'Nom de l\'habitat non trouvé') ?></h3>
 
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Avis</th>
+            <th>Améliorations à Apporter</th>
+            <th>Date</th>
+          
+            
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (!empty($reports)): ?>
+            <?php foreach ($reports as $report): ?>
+                <tr>
+                <td><?= htmlspecialchars($report->first_name) ?></td>
+                    <td><?= $report->vet_opinion ?></td>
+                    <td><?= $report->improvements ?></td>
+                    
+                    <td><?= date('d-m-y', strtotime($report->created_at)) ?></td>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="6">Aucun rapport disponible pour cet habitat.</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
 
-<p><strong>Nom de l'Habitat :</strong> <?= htmlspecialchars($habitat->name) ?></p>
-
-<?php if ($report): ?>
-    <p><strong>Avis du Vétérinaire :</strong> <?= nl2br(htmlspecialchars($report->vet_opinion)) ?></p>
-    <p><strong>Améliorations à Apporter :</strong> <?= nl2br(htmlspecialchars($report->improvements)) ?></p>
-<?php else: ?>
-    <p>Aucun rapport disponible pour cet habitat.</p>
-<?php endif; ?>
-
-<!-- Montrer le bouton "Mettre à jour" pour vétérinaire et admin -->
-<?php if ($user_role == 'veterinaire' || $user_role == 'admin'): ?>
-    <a href="/index.php?controller=habitatReport&action=edit&habitat_id=<?= $habitat->id ?>" class="btn btn-primary">
-        <?= $report ? 'Mettre à jour' : 'Ajouter un rapport' ?>
-    </a>
-<?php endif; ?>
-
+<a href="/index.php?controller=habitatReport&action=addReport&habitat_id=<?= htmlspecialchars($habitat->id) ?>" class="btn btn-primary">Ajouter un rapport</a>
 <a href="/index.php?controller=habitat&action=listHabitats" class="btn btn-secondary">Retour</a>
