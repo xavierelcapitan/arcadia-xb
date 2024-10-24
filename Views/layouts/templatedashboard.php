@@ -67,7 +67,16 @@
 
                 <!-- Main content (dynamic) -->
                 <section class="admin-content">
-                <?php require_once $view; ?>
+                <?php // Vérifier que $view est défini
+if (isset($view)) {
+    if (file_exists($view)) {
+        require_once $view;
+    } else {
+        echo "Vue non trouvée : $view";
+    }
+} else {
+    echo "Aucune vue spécifiée.";
+}?>
                 </section>
 
                 <!-- Footer -->

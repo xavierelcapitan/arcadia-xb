@@ -1,4 +1,5 @@
 <?php
+// Controllers/VeterinaryReportController.php
 
 namespace App\Controllers;
 
@@ -47,4 +48,41 @@ $foodTypes = Animal::getDistinctFoodTypes();
         $view = __DIR__ . '/../../Views/admin/veterinary_reports/create_report.php';
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
+
+    public function showReportDetails()
+    {
+        // Récupérer l'ID du rapport depuis la requête
+        $reportId = isset($_GET['id']) ? $_GET['id'] : null;
+    
+        if (!$reportId) {
+            echo "ID du rapport non spécifié.";
+            return;
+        }
+    
+        // Récupérer les détails du rapport vétérinaire
+        $report = \App\Models\VeterinaryReport::getReportById($reportId);
+    
+        if (!$report) {
+            echo "Rapport vétérinaire non trouvé.";
+            return;
+        }
+    
+        // Récupérer l'animal associé au rapport
+        $animal = \App\Models\Animal::getById($report->animal_id);
+    
+        if (!$animal) {
+            echo "Animal non trouvé.";
+            return;
+        }
+    
+        // Transmettre les données à la vue
+        $view = __DIR__ . '/../../views/admin/veterinary_reports/details_report.php';
+        $pageTitle = 'Détails du Rapport Vétérinaire';
+        
+        // Inclure le template du dashboard en passant les données
+        require_once __DIR__ . '/../../views/layouts/templatedashboard.php';
+    }
+    
+
+
 }

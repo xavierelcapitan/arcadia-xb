@@ -17,6 +17,14 @@ class Animal extends Model
          return $stmt->fetchAll(PDO::FETCH_OBJ);
      }
 
+     public static function getAnimalById($id)
+{
+    $db = (new self())->getDbInstance();
+    $stmt = $db->prepare("SELECT * FROM animals WHERE id = :id");
+    $stmt->execute(['id' => $id]);
+    return $stmt->fetch(PDO::FETCH_OBJ);
+}
+
      
  
  // Récupérer les types de nourriture distincts de la table animals
@@ -84,7 +92,14 @@ class Animal extends Model
     }
 
 
-
+    public static function getById($id)
+    {
+        $db = self::getDbInstance();
+        $stmt = $db->prepare("SELECT * FROM animals WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+    
     
 
     // Mettre à jour un animal

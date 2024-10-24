@@ -1,4 +1,6 @@
 <?php
+// Models/VeterinaryReport.php
+
 
 namespace App\Models;
 
@@ -29,8 +31,8 @@ class VeterinaryReport extends Model
     {
         $db = self::getDbInstance();
         $stmt = $db->prepare("
-            INSERT INTO veterinary_reports (animal_id, user_id, last_checkup_date, health_status, food_given, food_quantity, created_at)
-            VALUES (:animal_id, :user_id, :last_checkup_date, :health_status, :food_given, :food_quantity, NOW())
+            INSERT INTO veterinary_reports (animal_id, user_id, last_checkup_date, health_status, food_given, food_quantity, additional_notes, created_at)
+            VALUES (:animal_id, :user_id, :last_checkup_date, :health_status, :food_given, :food_quantity, :additional_notes, NOW())
         ");
         
         $stmt->execute([
@@ -39,7 +41,18 @@ class VeterinaryReport extends Model
             ':last_checkup_date' => $data['last_checkup_date'],
             ':health_status' => $data['health_status'],
             ':food_given' => $data['food_given'],
-            ':food_quantity' => $data['food_quantity']
+            ':food_quantity' => $data['food_quantity'],
+            ':additional_notes' => $data['additional_notes']  
         ]);
     }
+    
+
+    public static function getReportById($id)
+{
+    $db = (new self())->getDbInstance();
+    $stmt = $db->prepare("SELECT * FROM veterinary_reports WHERE id = :id");
+    $stmt->execute(['id' => $id]);
+    return $stmt->fetch(PDO::FETCH_OBJ);
+}
+
 }

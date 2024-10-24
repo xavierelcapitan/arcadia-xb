@@ -1,4 +1,8 @@
 <?php 
+// Views/admin/animals/details.php
+
+
+
 // Dans details.php ou toute autre page protégée
 use App\Config\SessionManager;
 
@@ -34,7 +38,6 @@ $user_role = SessionManager::get('user_role');
 
 
 <!-- Nourrir l'animal (visible uniquement pour admin et employe) -->
-<!-- Nourrir l'animal (visible uniquement pour admin et employe) -->
 <?php if ($user_role == 'admin' || $user_role == 'employe'): ?>
     <h4>Nourrir l'animal</h4>
     <form action="/index.php?controller=feedingReport&action=addReport&animal_id=<?= $animal->id ?>" method="POST">
@@ -67,7 +70,7 @@ $user_role = SessionManager::get('user_role');
         <table class="table">
             <thead>
                 <tr>
-                    <th>Date</th>
+                    <th>Date</th> // afficher date jj-mm-aa
                     <th>Type de nourriture</th>
                     <th>Quantité (g)</th>
                     <th>Ajouté par</th>
@@ -76,7 +79,7 @@ $user_role = SessionManager::get('user_role');
             <tbody>
                 <?php foreach ($feeding_reports as $report): ?>
                     <tr>
-                        <td><?= htmlspecialchars($report->feeding_date) ?></td>
+                    <td><?= date('d-m-Y H:i', strtotime($report->feeding_date)) ?></td>
                         <td><?= htmlspecialchars($report->food_type_report) ?></td>
                         <td><?= htmlspecialchars($report->food_quantity) ?> g</td>
                         <td><?= htmlspecialchars($report->user_name) ?></td>
@@ -92,7 +95,7 @@ $user_role = SessionManager::get('user_role');
 
 
 <!-- Rapports vétérinaires : disponibles pour tous les rôles -->
-<h4>Liste des rapports vétérinaires</h4>
+<h4>Rapports vétérinaires</h4>
 <?php if (!empty($veterinary_reports)): ?>
     <table class="table">
         <thead>
@@ -101,20 +104,22 @@ $user_role = SessionManager::get('user_role');
                 <th>État de santé</th>
                 <th>Type de nourriture</th>
                 <th>Quantité</th>
-                <th>Actions</th>
+                <th>Recommandations</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($veterinary_reports as $report): ?>
                 <tr>
-                    <td><?= $report->last_checkup_date ?></td>
-                    <td><?= htmlspecialchars($report->health_status) ?></td>
+              
+                    <td><?= date('d-m-y', strtotime($report->last_checkup_date)) ?></td>
+
+                    <td><?= htmlspecialchars($report->health_status) ?></td> 
                     <td><?= htmlspecialchars($report->food_given) ?></td>
                     <td><?= htmlspecialchars($report->food_quantity) ?> g</td>
                     <td>
                         <!-- Actions sur les rapports pour vétérinaire et admin -->
                         <?php if ($user_role == 'veterinaire' || $user_role == 'admin'): ?>
-                            <a href="/index.php?controller=veterinaryReport&action=editReport&id=<?= $report->id ?>" class="btn btn-secondary">Modifier</a>
+                            <a href="/index.php?controller=VeterinaryReport&action=showReportDetails&id=<?= $report->id ?>" class="btn btn-info">Détails</a>
                         <?php endif; ?>
                     </td>
                 </tr>
