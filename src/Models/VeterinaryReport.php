@@ -1,58 +1,85 @@
 <?php
 // Models/VeterinaryReport.php
 
-
 namespace App\Models;
 
 use PDO;
-use App\Models\Model;
 
 class VeterinaryReport extends Model
 {
     protected static $table = 'veterinary_reports';
 
-    // Récupérer les rapports vétérinaires par ID d'animal
-    public static function getByAnimalId($animal_id)
+    // Récupérer tous les rapports vétérinaires
+    public static function getAllReports()
     {
         $db = self::getDbInstance();
-        $stmt = $db->prepare("
-            SELECT vr.*, u.first_name AS user_name
-            FROM veterinary_reports vr
-            JOIN users u ON vr.user_id = u.id
-            WHERE vr.animal_id = :animal_id
-            ORDER BY vr.last_checkup_date DESC
-        ");
-        $stmt->execute([':animal_id' => $animal_id]);
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }
-
-    // Ajouter un rapport vétérinaire
-    public static function add($data)
-    {
-        $db = self::getDbInstance();
-        $stmt = $db->prepare("
-            INSERT INTO veterinary_reports (animal_id, user_id, last_checkup_date, health_status, food_given, food_quantity, additional_notes, created_at)
-            VALUES (:animal_id, :user_id, :last_checkup_date, :health_status, :food_given, :food_quantity, :additional_notes, NOW())
-        ");
+        $query = "SELECT vr.*, a.name AS animal_name, a.race, h.name AS habitat_name
+                  FROM veterinary_reports vr
+                  JOIN animals a ON vr.animal_id = a.id
+                  JOIN habitats h ON a.habitat_id = h.id";
         
-        $stmt->execute([
-            ':animal_id' => $data['animal_id'],
-            ':user_id' => $data['user_id'],
-            ':last_checkup_date' => $data['last_checkup_date'],
-            ':health_status' => $data['health_status'],
-            ':food_given' => $data['food_given'],
-            ':food_quantity' => $data['food_quantity'],
-            ':additional_notes' => $data['additional_notes']  
-        ]);
+        $stmt = $db->query($query);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+       // Récupérer un rapport vétérinaire par ID
+       public static function getReportById($reportId)
+       {
+           $db = self::getDbInstance();
+           $query = "SELECT vr.*, a.name AS animal_name, a.race, h.name AS habitat_name
+                     FROM veterinary_reports vr
+                     JOIN animals a ON vr.animal_id = a.id
+                     JOIN habitats h ON a.habitat_id = h.id
+                     WHERE vr.id = :reportId";
+           
+           $stmt = $db->prepare($query);
+           $stmt->bindParam(':reportId', $reportId, PDO::PARAM_INT);
+           $stmt->execute();
+   
+           return $stmt->fetch(PDO::FETCH_ASSOC); // Récupère un seul rapport
+       }
+
+       // Méthode pour récupérer les rapports filtrés
+    public static function getFilteredReports($filters)
+    {
+        $db = self::getDbInstance();
+        
+        // Début de la requête
+        $query = "SELECT vr.*, a.name AS animal_name, a.race, h.name AS habitat_name
+                  FROM veterinary_reports vr
+                  JOIN animals a ON vr.animal_id = a.id
+                  JOIN habitats h ON a.habitat_id = h.id
+                  WHERE 1=1";
+
+        // Tableau pour stocker les paramètres
+        $params = [];
+
+        // Ajout des filtres dynamiquement
+        if (!empty($filters['animalName'])) {
+            $query .= " AND a.name LIKE :animalName";
+            $params[':animalName'] = '%' . $filters['animalName'] . '%';
+        }
+        if (!empty($filters['animalRace'])) {
+            $query .= " AND a.race LIKE :animalRace";
+            $params[':animalRace'] = '%' . $filters['animalRace'] . '%';
+        }
+        if (!empty($filters['reportDate'])) {
+            $query .= " AND vr.last_checkup_date = :reportDate";
+            $params[':reportDate'] = $filters['reportDate'];
+        }
+        if (!empty($filters['healthStatus'])) {
+            $query .= " AND vr.health_status = :healthStatus";
+            $params[':healthStatus'] = $filters['healthStatus'];
+        }
+
+        // Préparation et exécution de la requête
+        $stmt = $db->prepare($query);
+        $stmt->execute($params);
+
+        // Retourner les résultats
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     
-
-    public static function getReportById($id)
-{
-    $db = (new self())->getDbInstance();
-    $stmt = $db->prepare("SELECT * FROM veterinary_reports WHERE id = :id");
-    $stmt->execute(['id' => $id]);
-    return $stmt->fetch(PDO::FETCH_OBJ);
 }
 
-}

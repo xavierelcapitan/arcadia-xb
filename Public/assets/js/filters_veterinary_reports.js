@@ -1,5 +1,16 @@
 // Public/assets/js/charts_dashboard.js
 
+document.addEventListener("DOMContentLoaded", function () {
+    const canvas = document.getElementById("myCanvasElementId"); // Remplacez par l'ID correct de votre élément canvas
+    if (canvas) {
+        const ctx = canvas.getContext("2d");
+        // Votre logique pour travailler avec ctx
+    } else {
+        console.warn("Canvas élément non trouvé !");
+    }
+});
+
+
 var ctx = document.getElementById('consultationsChart').getContext('2d');
 var consultationsChart = new Chart(ctx, {
     type: 'bar',

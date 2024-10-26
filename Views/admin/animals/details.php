@@ -73,10 +73,7 @@ $user_role = SessionManager::get('user_role');
             <input type="number" class="form-control" id="food_quantity" name="food_quantity" min="0" required>
         </div>
 
-        <div class="mb-3">
-            <label for="feeding_date" class="form-label">Date et heure de nourrissage</label>
-            <input type="datetime-local" class="form-control" id="feeding_date" name="feeding_date" required>
-        </div>
+      
 
         <button type="submit" class="btn btn-primary">Ajouter un rapport de nourriture</button>
     </form>
@@ -87,7 +84,7 @@ $user_role = SessionManager::get('user_role');
         <table class="table">
             <thead>
                 <tr>
-                    <th>Date</th> // afficher date jj-mm-aa
+                    <th>Date</th>
                     <th>Type de nourriture</th>
                     <th>Quantité (g)</th>
                     <th>Ajouté par</th>
@@ -96,7 +93,9 @@ $user_role = SessionManager::get('user_role');
             <tbody>
                 <?php foreach ($feeding_reports as $report): ?>
                     <tr>
-                    <td><?= date('d-m-Y H:i', strtotime($report->feeding_date)) ?></td>
+                    <td>
+    <?= !empty($report->feeding_date) ? date('d-m-Y H:i', strtotime($report->feeding_date)) : 'Date non disponible' ?>
+</td>
                         <td><?= htmlspecialchars($report->food_type_report) ?></td>
                         <td><?= htmlspecialchars($report->food_quantity) ?> g</td>
                         <td><?= htmlspecialchars($report->user_name) ?></td>

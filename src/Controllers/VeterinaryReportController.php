@@ -1,5 +1,5 @@
 <?php
-// Controllers/VeterinaryReportController.php
+// src/Controllers/VeterinaryReportController.php
 
 namespace App\Controllers;
 
@@ -85,4 +85,36 @@ $foodTypes = Animal::getDistinctFoodTypes();
     
 
 
+    public function summaries()
+    {
+        // Récupérer tous les rapports vétérinaires depuis le modèle
+        $reports = VeterinaryReport::getAllReports();
+
+        // Transmettre les rapports à la vue
+        $view = __DIR__ . '/../../Views/admin/veterinary_reports/summaries.php';
+        $pageTitle = 'Résumé des Rapports Vétérinaires';
+
+        // Charger la vue avec les données des rapports
+        require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
+    }
+
+    
+    public function getFilteredReports()
+    {
+        header('Content-Type: application/json');
+    
+        // Récupérer les filtres
+        $filters = json_decode(file_get_contents('php://input'), true);
+    
+        // Récupérer les rapports filtrés depuis le modèle
+        $reports = VeterinaryReport::getFilteredReports($filters);
+    
+        // Vérifier le contenu de $reports
+        if (empty($reports)) {
+            echo json_encode(["message" => "Aucun rapport trouvé."]);
+        } else {
+            echo json_encode($reports);
+        }
+    }
+    
 }

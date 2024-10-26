@@ -7,6 +7,8 @@
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Lien vers Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
     <!-- Admin CSS -->
     <link rel="stylesheet" href="/assets/css/admin.css">
@@ -42,7 +44,10 @@
     <ul>
         <li><a href="/index.php?controller=animal&action=listAnimals">Liste des Animaux</a></li>
         <li><a href="/index.php?controller=habitat&action=listHabitats">Habitats</a></li>
-        <li><a href="/index.php?controller=admin&action=reports">Résumés des Rapports</a></li>
+
+        <li><a href="/index.php?controller=veterinaryReport&action=summaries">Résumé des Rapports</a></li>
+
+
         <li><a href="/index.php?controller=admin&action=stats">Stats</a></li>
     </ul>
 </li>
@@ -133,5 +138,6 @@ if (isset($view)) {
     <script src="/assets/js/datatables_setup.js"></script>
     <script src="/assets/js/filters_veterinary_reports.js"></script>
     <script src="/assets/js/charts_dashboard.js"></script>
+    <script src="/Public/assets/js/summaries.js"></script>
 </body>
 </html>

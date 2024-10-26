@@ -25,13 +25,16 @@ public function addReport()
     // Récupérer l'ID de l'animal
     $animal_id = $_GET['animal_id'];
 
+     // Récupérer la date et l'heure actuelles
+     $feeding_date = date('Y-m-d H:i:s');
+
     // Ajouter un rapport de nourrissage
     FeedingReport::add([
         'animal_id' => $animal_id,
-        'user_id' => $user_id, // Inclure l'utilisateur connecté
+        'user_id' => $user_id, 
         'food_quantity' => $_POST['food_quantity'],
-        'feeding_date' => $_POST['feeding_date'],
-        'food_type_report' => $_POST['food_type_report'] // Assurez-vous que ce nom correspond à votre formulaire
+        'feeding_date' => date('Y-m-d H:i:s'),
+        'food_type_report' => $_POST['food_type_report'] 
     ]);
 
     // Redirection après ajout
