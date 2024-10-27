@@ -45,7 +45,6 @@ class VeterinaryReport extends Model
             ':additional_notes' => $data['additional_notes']  
         ]);
     }
-    
 
     public static function getReportById($id)
 {
