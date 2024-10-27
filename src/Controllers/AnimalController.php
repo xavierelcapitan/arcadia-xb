@@ -246,6 +246,24 @@ $feeding_reports = FeedingReport::getByAnimalId($animal->id);
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
     
+    public function reports() {
+        // Utilise la méthode existante pour obtenir les derniers rapports par animal
+        $reports = VeterinaryReport::getLatestReportsForAnimals();
+
+        // Définir le chemin de la vue
+        $view = __DIR__ . '/../../Views/admin/veterinary_reports/summaries.php';
+        $pageTitle = 'Résumé des Rapports Vétérinaires';
+        
+        require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
+    }
+
+    public function showSummaries() {
+        $reports = VeterinaryReport::getLatestReportsForAnimals();
+        $view = __DIR__ . '/../../Views/admin/veterinary_reports/summaries.php';
+        $pageTitle = 'Résumé des Rapports Vétérinaires';
+        require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
+    }
+
 }
 
 

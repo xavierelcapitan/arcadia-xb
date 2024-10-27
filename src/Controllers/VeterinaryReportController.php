@@ -83,6 +83,47 @@ $foodTypes = Animal::getDistinctFoodTypes();
         require_once __DIR__ . '/../../views/layouts/templatedashboard.php';
     }
     
+// src/Controllers/VeterinaryReportController.php
+public function summaries()
+{
+    // Récupérer tous les derniers rapports de chaque animal
+    $reports = VeterinaryReport::getLatestReportsForAnimalsWithFilters([]);
 
+    // Transmettre les rapports à la vue
+    $view = __DIR__ . '/../../Views/admin/veterinary_reports/summaries.php';
+    $pageTitle = 'Résumé des Rapports Vétérinaires';
+
+    require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
+}
+
+
+    public function getFilterOptions()
+    {
+        header('Content-Type: application/json');
+        
+        // Récupérer les filtres disponibles depuis la base de données
+        $animalNames = VeterinaryReport::getDistinctAnimalNames();
+        $animalRaces = VeterinaryReport::getDistinctAnimalRaces();
+        $healthStatuses = VeterinaryReport::getDistinctHealthStatuses();
+
+        echo json_encode([
+            'animalNames' => $animalNames,
+            'animalRaces' => $animalRaces,
+            'healthStatuses' => $healthStatuses,
+        ]);
+    }
+
+    public function getFilteredReports()
+{
+    header('Content-Type: application/json');
+
+    // Récupérer les filtres appliqués
+    $filters = json_decode(file_get_contents('php://input'), true);
+
+    // Obtenir les derniers rapports pour chaque animal en utilisant les filtres si fournis
+    $reports = VeterinaryReport::getLatestReportsForAnimalsWithFilters($filters);
+
+    echo json_encode($reports);
+}
 
 }

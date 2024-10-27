@@ -1,6 +1,6 @@
 <?php
-// Models/VeterinaryReport.php
 
+// src/Models/VeterinaryReport.php
 
 namespace App\Models;
 
@@ -54,5 +54,104 @@ class VeterinaryReport extends Model
     $stmt->execute(['id' => $id]);
     return $stmt->fetch(PDO::FETCH_OBJ);
 }
+
+public static function getLatestReportsForAnimals()
+{
+    $db = self::getDbInstance();
+    $stmt = $db->query("
+        SELECT vr.*, a.name AS animal_name, a.race AS animal_race, h.name AS habitat_name
+        FROM veterinary_reports vr
+        JOIN animals a ON vr.animal_id = a.id
+        JOIN habitats h ON a.habitat_id = h.id
+        WHERE (vr.animal_id, vr.last_checkup_date) IN (
+            SELECT animal_id, MAX(last_checkup_date)
+            FROM veterinary_reports
+            GROUP BY animal_id
+        )
+        ORDER BY vr.last_checkup_date DESC
+    ");
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
+public static function getDistinctAnimalNames()
+{
+    $db = self::getDbInstance();
+    $stmt = $db->query("SELECT DISTINCT name FROM animals");
+    return $stmt->fetchAll(PDO::FETCH_COLUMN);
+}
+
+public static function getDistinctAnimalRaces()
+{
+    $db = self::getDbInstance();
+    $stmt = $db->query("SELECT DISTINCT race FROM animals");
+    return $stmt->fetchAll(PDO::FETCH_COLUMN);
+}
+
+public static function getDistinctHealthStatuses()
+{
+    $db = self::getDbInstance();
+    $stmt = $db->query("SELECT DISTINCT health_status FROM veterinary_reports");
+    return $stmt->fetchAll(PDO::FETCH_COLUMN);
+}
+
+
+
+
+public static function getLatestReportsForAnimalsWithFilters($filters)
+{
+    $db = self::getDbInstance();
+    $query = "
+        SELECT a.id AS animal_id, a.name AS animal_name, a.race AS animal_race, h.name AS habitat_name,
+               vr.last_checkup_date, vr.health_status, vr.id AS report_id
+        FROM animals a
+        LEFT JOIN veterinary_reports vr ON vr.animal_id = a.id
+        LEFT JOIN habitats h ON a.habitat_id = h.id
+    ";
+    
+    $conditions = [];
+    $params = [];
+
+    // Filtrer par nom de l'animal
+    if (!empty($filters['animalName'])) {
+        $conditions[] = "a.name LIKE :animalName";
+        $params[':animalName'] = '%' . $filters['animalName'] . '%';
+    }
+
+    // Filtrer par race de l'animal
+    if (!empty($filters['animalRace'])) {
+        $conditions[] = "a.race LIKE :animalRace";
+        $params[':animalRace'] = '%' . $filters['animalRace'] . '%';
+    }
+
+    // Filtrer par date du rapport
+    if (!empty($filters['reportDate'])) {
+        $conditions[] = "vr.last_checkup_date = :reportDate";
+        $params[':reportDate'] = $filters['reportDate'];
+    }
+
+    // Filtrer par état de santé
+    if (!empty($filters['healthStatus'])) {
+        $conditions[] = "vr.health_status = :healthStatus";
+        $params[':healthStatus'] = $filters['healthStatus'];
+    }
+
+    // Filtrer pour afficher uniquement les animaux sans rapport
+    if (!empty($filters['noReport']) && $filters['noReport'] === true) {
+        $conditions[] = "vr.id IS NULL";  // L'animal n'a pas de rapport
+    }
+
+    // Ajouter les conditions au query
+    if ($conditions) {
+        $query .= ' WHERE ' . implode(' AND ', $conditions);
+    }
+
+    // Récupérer les résultats
+    $query .= " GROUP BY a.id ORDER BY vr.last_checkup_date DESC";
+    $stmt = $db->prepare($query);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
 
 }

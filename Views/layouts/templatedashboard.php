@@ -42,7 +42,7 @@
     <ul>
         <li><a href="/index.php?controller=animal&action=listAnimals">Liste des Animaux</a></li>
         <li><a href="/index.php?controller=habitat&action=listHabitats">Habitats</a></li>
-        <li><a href="/index.php?controller=admin&action=reports">Résumés des Rapports</a></li>
+        <li><a href="/index.php?controller=animal&action=showSummaries">Résumés des Rapports</a></li>
         <li><a href="/index.php?controller=admin&action=stats">Stats</a></li>
     </ul>
 </li>

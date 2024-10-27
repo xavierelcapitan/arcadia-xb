@@ -62,4 +62,5 @@ class AdminController {
         User::delete($id);
         header('Location: /index.php?controller=admin&action=users');
     }
+
 }
