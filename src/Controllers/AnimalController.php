@@ -21,6 +21,7 @@ class AnimalController
 
         if ($animals) {
             $view = __DIR__ . '/../../Views/admin/animals/list.php';
+            $pageTitle = 'Liste des animaux';
             require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
         } else {
             echo "Aucun animal trouvé.";
@@ -100,6 +101,7 @@ class AnimalController
     
         // Transmettre les variables à la vue
         $view = __DIR__ . '/../../Views/admin/animals/create.php';
+        $pageTitle = 'Ajouter un nouvel animal';
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
     
@@ -176,6 +178,7 @@ class AnimalController
             }
 
             $view = __DIR__ . '/../../Views/admin/animals/edit.php';
+            $pageTitle = "Modifer : $animal->name";
             require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
         } else {
             header('Location: /index.php?controller=animal&action=listAnimals');
@@ -243,6 +246,7 @@ $feeding_reports = FeedingReport::getByAnimalId($animal->id);
     
          // Transmettre les données à la vue
         $view = __DIR__ . '/../../Views/admin/animals/details.php';
+        $pageTitle = "Tous les détails de : $animal->name";
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
     

@@ -11,6 +11,7 @@ class HabitatController
     {
         $habitats = Habitat::all();
         $view = __DIR__ . '/../../Views/admin/habitats/list.php';
+        $pageTitle = 'Les habitats';
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
 

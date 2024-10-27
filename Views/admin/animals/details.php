@@ -18,8 +18,6 @@ if (!SessionManager::has('user_id')) {
 $user_role = SessionManager::get('user_role');
 ?>
 
-<!-- Détails de l'animal -->
-<h1>Détails de l'animal</h1>
 
 <div>
     <!-- Image de l'animal -->

@@ -1,11 +1,8 @@
 <!-- Views/admin/habitats/list.php -->
-<!-- Affiche la liste des habitats -->
 
-<h1>Liste des habitats</h1>
+<a href="/index.php?controller=habitat&action=createHabitat" class="btn btn-primary mt-5">Ajouter un habitat</a>
 
-<a href="/index.php?controller=habitat&action=createHabitat" class="btn btn-primary">Ajouter un habitat</a>
-
-<table class="table">
+<table class="table mt-5">
     <thead>
         <tr>
         

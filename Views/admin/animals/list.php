@@ -1,5 +1,3 @@
-<h1>Liste des animaux</h1>
-
 <a href="/index.php?controller=animal&action=createAnimal" class="btn btn-primary">Ajouter un animal</a>
 
 <?php if (!empty($animals)) : ?>
