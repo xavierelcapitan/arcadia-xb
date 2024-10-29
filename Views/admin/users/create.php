@@ -27,7 +27,7 @@
         <select class="form-control" id="role" name="role" required>
             <option value="employe">Employé</option>
             <option value="veterinaire">Vétérinaire</option>
-            <option value="admin">Admin</option> <!-- Ajouter un admin -->
+            <option value="admin">Admin</option> 
         </select>
     </div>
 

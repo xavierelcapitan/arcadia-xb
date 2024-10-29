@@ -33,6 +33,14 @@ class User extends Model
         return $stmt->execute([':id' => $id]);
     }
 
+    public static function emailExists($email)
+{
+    $db = self::getDbInstance();
+    $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE email = :email");
+    $stmt->execute([':email' => $email]);
+    return $stmt->fetchColumn() > 0;
+}
+
  // Ajouter un utilisateur avec mot de passe haché en Argon2id
  public static function add($data)
  {

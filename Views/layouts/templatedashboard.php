@@ -29,9 +29,9 @@
                     <li><a href="/index.php?controller=admin&action=dashboard">Dashboard</a></li>
                     <li><a href="/index.php?controller=admin&action=users">Utilisateurs</a></li>
                     <li><a href="/index.php?controller=admin&action=horaires">Horaires</a></li>
-                    <li><a href="/index.php?controller=admin&action=services">Services</a></li>
+                    <li><a href="/index.php?controller=services&action=listservices">Services</a></li>
 
-                   
+                    
                     
                    
                     

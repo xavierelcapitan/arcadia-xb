@@ -1,4 +1,5 @@
 <?php
+// Public/index.php
 
 use App\Config\Autoloader;
 

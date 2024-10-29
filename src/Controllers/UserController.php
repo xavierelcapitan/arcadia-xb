@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Services\EmailService;
 
 class UserController
 {
@@ -11,12 +12,18 @@ class UserController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'];
+            if (User::emailExists($email)) {
+                echo "L'email est déjà utilisé. Veuillez choisir un autre email.";
+                return;
+            }
+    
+            // Autres champs de l'utilisateur
             $password = $_POST['password'];
             $firstName = $_POST['first_name'];
             $lastName = $_POST['last_name'];
-            $role = $_POST['role']; // Rôle sélectionné dans le formulaire
-
-            // Ajouter l'utilisateur via la méthode dans le modèle
+            $role = $_POST['role'];
+    
+            // Ajouter l'utilisateur via le modèle
             User::add([
                 'email' => $email,
                 'password' => $password,
@@ -24,16 +31,17 @@ class UserController
                 'last_name' => $lastName,
                 'role' => $role
             ]);
-
+    
             // Rediriger après la création
             header('Location: /index.php?controller=user&action=listUsers');
             exit;
         }
-
+    
         // Afficher le formulaire de création d'utilisateur
         $view = __DIR__ . '/../../Views/admin/users/create.php';
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
+    
 
     // Modifier un utilisateur
     public function editUser()
