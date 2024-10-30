@@ -27,7 +27,7 @@ class Service extends Model
     public static function create($data)
     {
         $db = (new self())->getDbInstance();
-        $stmt = $db->prepare("INSERT INTO services (name, description, location, created_at) VALUES (:name, :description, :location, :created_at)");
+        $stmt = $db->prepare("INSERT INTO services (name, description, location, image_path, created_at) VALUES (:name, :description, :location, :image_path, :created_at)");
         return $stmt->execute($data);
     }
     
@@ -41,11 +41,12 @@ class Service extends Model
 
     public static function update($id, $data)
     {
-        $db = self::getDbInstance();
-        $stmt = $db->prepare("UPDATE services SET name = :name, description = :description, location = :location WHERE id = :id");
+        $db = (new self())->getDbInstance();
+        $stmt = $db->prepare("UPDATE services SET name = :name, description = :description, location = :location, image_path = :image_path WHERE id = :id");
         $data['id'] = $id;
         return $stmt->execute($data);
     }
+    
 
     public static function delete($id)
     {

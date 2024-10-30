@@ -1,17 +1,21 @@
 <!-- Views/admin/services/edit.php -->
 
-<form method="POST" action="/index.php?controller=services&action=editService&id=<?= $service->id ?>">
-    <div class="form-group">
-        <label>Nom du Service</label>
-        <input type="text" name="name" value="<?= htmlspecialchars($service->name) ?>" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label>Description</label>
-        <textarea name="description" class="form-control" required><?= htmlspecialchars($service->description) ?></textarea>
-    </div>
-    <div class="form-group">
-        <label>Emplacement</label>
-        <input type="text" name="location" value="<?= htmlspecialchars($service->location) ?>" class="form-control" required>
-    </div>
-    <button type="submit" class="btn btn-primary mt-3">Mettre à jour</button>
+<form action="/index.php?controller=services&action=editService&id=<?= $service->id ?>" method="POST" enctype="multipart/form-data">
+    <label for="name">Nom du Service</label>
+    <input type="text" id="name" name="name" value="<?= htmlspecialchars($service->name) ?>" required>
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description" required><?= htmlspecialchars($service->description) ?></textarea>
+
+    <label for="location">Emplacement</label>
+    <input type="text" id="location" name="location" value="<?= htmlspecialchars($service->location) ?>" required>
+
+    <label for="image_path">Image actuelle</label><br>
+    <?php if ($service->image_path): ?>
+        <img src="<?= $service->image_path ?>" alt="Image de <?= htmlspecialchars($service->name) ?>" style="width: 100px; height: 100px;"><br>
+    <?php endif; ?>
+    <input type="file" id="image_path" name="image_path"><br>
+
+    <button type="submit">Mettre à jour</button>
 </form>
+
