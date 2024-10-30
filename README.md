@@ -12,3 +12,8 @@ a remettre dans le composer.json plus tard
     "nesbot/carbon": "^3.8"
   }
     */
+
+MongoDB
+mongodb+srv://xavierelcapitan:495aCYPg7RvM4IiH@ecfxb.qvher.mongodb.net/
+xavierelcapitan
+495aCYPg7RvM4IiH

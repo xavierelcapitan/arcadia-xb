@@ -27,11 +27,17 @@ class ServicesController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Initialisation des données à insérer en base de données avec image_path défini à null par défaut
             $data = [
-                'name' => $_POST['name'],
-                'description' => $_POST['description'],
-                'location' => $_POST['location'],
-                'image_path' => null, 
-                'created_at' => date('Y-m-d H:i:s')
+            'name' => $_POST['name'],
+            'description' => $_POST['description'],
+            'location' => $_POST['location'],
+            'image_path' => $_POST['image_path'],
+            'opening_time' => $_POST['opening_time'],
+            'closing_time' => $_POST['closing_time'],
+            'child_price' => $_POST['child_price'],
+            'adult_price' => $_POST['adult_price'],
+            'group_price' => $_POST['group_price'],
+            'is_free' => isset($_POST['is_free']) ? 1 : 0,
+            'created_at' => date('Y-m-d H:i:s')
             ];
     
             // Gestion de l'image
@@ -81,10 +87,16 @@ class ServicesController
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Préparation des données de mise à jour
                 $data = [
-                    'name' => $_POST['name'],
-                    'description' => $_POST['description'],
-                    'location' => $_POST['location'],
-                    'image_path' => $service->image_path // Par défaut, conserver l'ancienne image
+            'name' => $_POST['name'],
+            'description' => $_POST['description'],
+            'location' => $_POST['location'],
+            'image_path' => $service->image_path ,
+            'opening_time' => $_POST['opening_time'],
+            'closing_time' => $_POST['closing_time'],
+            'child_price' => $_POST['child_price'],
+            'adult_price' => $_POST['adult_price'],
+            'group_price' => $_POST['group_price'],
+            'is_free' => isset($_POST['is_free']) ? 1 : 0
                 ];
     
                 // Gestion de l'image (si une nouvelle image est uploadée)

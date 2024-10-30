@@ -7,7 +7,6 @@
     <thead>
         <tr>
             <th>Nom</th>
-            <th>Description</th>
             <th>Emplacement</th>
             <th>Image</th>
             <th>Actions</th>
@@ -17,7 +16,7 @@
         <?php foreach ($services as $service): ?>
             <tr>
                 <td><?= htmlspecialchars($service->name) ?></td>
-                <td><?= htmlspecialchars($service->description) ?></td>
+                
                 <td><?= htmlspecialchars($service->location) ?></td>
                 <td>
                     <?php if ($service->image_path): ?>
