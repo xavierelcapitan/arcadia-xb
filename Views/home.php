@@ -58,4 +58,6 @@
 
     <!-- Inclure Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <!-- Inclure le
+    <!-- Inclure le script JavaScript spécifique pour le slider des avis -->
+<script src="/assets/js/home_slider.js"></script>
+

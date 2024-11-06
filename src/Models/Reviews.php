@@ -30,9 +30,10 @@ class Reviews extends Model
     public static function getPendingReviews()
     {
         $db = (new self())->getDbInstance();
-        $stmt = $db->query("SELECT * FROM reviews WHERE is_approved = FALSE ORDER BY created_at DESC");
+        $stmt = $db->query("SELECT * FROM reviews WHERE status = 'pending' ORDER BY created_at DESC");
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+    
 
     public static function approveReview($id)
     {
@@ -40,16 +41,16 @@ class Reviews extends Model
         
         // Récupère l'email du visiteur pour envoyer une notification
         $stmt = $db->prepare("SELECT email FROM reviews WHERE id = :id");
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $review = $stmt->fetch(PDO::FETCH_OBJ);
         
         if ($review) {
             // Valide l'avis
-            $stmt = $db->prepare("UPDATE reviews SET is_approved = TRUE WHERE id = :id");
-            $stmt->bindParam(':id', $id);
+            $stmt = $db->prepare("UPDATE reviews SET status = 'approved' WHERE id = :id"); // Remplace TRUE par 'approved'
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $success = $stmt->execute();
-
+    
             if ($success) {
                 self::sendApprovalEmail($review->email);
             }
@@ -57,6 +58,7 @@ class Reviews extends Model
         }
         return false;
     }
+    
 
     private static function sendApprovalEmail($email)
     {
@@ -71,8 +73,27 @@ class Reviews extends Model
     public static function getApprovedReviews()
     {
         $db = (new self())->getDbInstance();
-        $stmt = $db->query("SELECT * FROM reviews WHERE is_approved = TRUE ORDER BY created_at DESC LIMIT 10"); // Limite de 10 pour éviter trop d'avis
+        $stmt = $db->query("SELECT * FROM reviews WHERE status = 'approved'");
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+    
+    
+
+    public static function rejectReview($id)
+{
+    $db = (new self())->getDbInstance();
+    $stmt = $db->prepare("UPDATE reviews SET status = 'rejected' WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+    return $stmt->execute();
+}
+
+public static function getRejectedReviews()
+{
+    $db = (new self())->getDbInstance();
+    $stmt = $db->query("SELECT * FROM reviews WHERE status = 'rejected' ORDER BY created_at DESC");
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
+
 }
 

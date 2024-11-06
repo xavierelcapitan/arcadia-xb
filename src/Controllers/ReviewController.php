@@ -49,4 +49,19 @@ class ReviewController
     {
         return Reviews::getApprovedReviews();
     }
+
+    public function rejectReview()
+{
+    if (isset($_POST['review_id'])) {
+        $reviewId = $_POST['review_id'];
+        if (Reviews::rejectReview($reviewId)) {
+            $_SESSION['success'] = "L'avis a été refusé.";
+        } else {
+            $_SESSION['error'] = "Impossible de refuser l'avis. Veuillez réessayer.";
+        }
+    }
+    header("Location: /index.php?controller=review&action=moderation");
+    exit();
+}
+
 }
