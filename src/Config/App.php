@@ -1,4 +1,5 @@
 <?php
+// src/App.php
 
 namespace App\Config;
 use App\Controllers\MainController;

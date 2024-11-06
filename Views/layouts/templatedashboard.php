@@ -47,6 +47,9 @@
     </ul>
 </li>
 
+<h4>Avis</h4>
+<a href="/index.php?controller=review&action=moderation">Modération des Avis</a>
+
 <div>
 <a href="/index.php?controller=auth&action=logout">Log Out</a>
 </div>

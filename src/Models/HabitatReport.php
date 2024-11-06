@@ -1,8 +1,6 @@
 <?php
 // src/Models/HabitatReport.php
 
-// src/Models/HabitatReport.php
-
 namespace App\Models;
 
 use PDO;
@@ -10,7 +8,7 @@ use App\Config\Db;
 
 class HabitatReport
 {
-    // Récupérer tous les rapports pour un habitat spécifique
+
    // Récupérer tous les rapports pour un habitat spécifique avec les infos utilisateur
    public static function getReportsByHabitatId($habitat_id)
    {

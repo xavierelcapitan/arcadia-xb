@@ -125,4 +125,25 @@ class UserController
         $view = __DIR__ . '/../../Views/admin/users/list.php';  // Chemin correct vers la vue liste
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';  // Utilisation du bon layout
     }
+
+    public function reviewModeration()
+{
+    $pendingReviews = Review::getPendingReviews();
+    $view = __DIR__ . '/../../Views/admin/reviews/moderation.php';
+    $pageTitle = "Modération des Avis";
+    require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
+}
+
+public function approveReview()
+{
+    $reviewId = $_POST['review_id'];
+    if (Review::approveReview($reviewId)) {
+        $_SESSION['success'] = "L'avis a été approuvé.";
+    } else {
+        $_SESSION['error'] = "Impossible d'approuver l'avis. Veuillez réessayer.";
+    }
+    header("Location: /admin/reviews"); // Redirige vers la page de modération
+    exit();
+}
+
 }

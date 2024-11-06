@@ -1,0 +1,38 @@
+/* Styles pour la section des avis */
+.reviews-container {
+  width: 90%;
+  margin: auto;
+}
+
+.review-slide {
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.review-slide h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.review-slide p {
+  font-size: 1em;
+  color: #555;
+}
+
+/* Ajustement de l'affichage du slider */
+.swiper-container {
+  padding: 20px 0;
+}
+
+/* Pagination et boutons de navigation */
+.swiper-pagination-bullet {
+  background: #007BFF;
+}
+
+.swiper-button-next, .swiper-button-prev {
+  color: #007BFF;
+}
