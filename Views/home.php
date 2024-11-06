@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page d'accueil</title>
-    
-    <!-- Inclure Swiper CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    
-    <!-- Inclure le CSS pour la page d'accueil -->
-    <link rel="stylesheet" href="/assets/css/home_styles.css">
-</head>
-<body>
-    <h1>Bienvenue sur la page d'accueil d'Arcadia</h1>
-    <ul>
-        <li><a href="/index.php?controller=admin&action=dashboard">Accéder au Dashboard</a></li>
-    </ul>
+
+<div class="container">
+    <h1 class="display-1">Bienvenue sur Arcadia</h1>
+    <p class="text-content">Découvrez ce que disent nos visiteurs et explorez nos services.</p>
+</div>
 
     <!-- Bloc d'Avis -->
     <h2>Ce que disent nos visiteurs</h2>

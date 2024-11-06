@@ -4,17 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de bord</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <title>Zoo Arcadia</title>
+    <link rel="stylesheet" href="/assets/css/variables.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/home_styles.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
     <header>
-        <h1>Tableau de bord</h1>
+     
         <nav>
-            <ul>
-                <li><a href="/index.php?controller=admin&action=dashboard">Dashboard</a></li>
-                <li><a href="/index.php?controller=auth&action=logout">Déconnexion</a></li>
-            </ul>
+          
         </nav>
     </header>
 
@@ -27,6 +28,10 @@
 
     <footer>
         <p>&copy; 2024 Arcadia</p>
+        <ul>
+                <li><a href="/index.php?controller=admin&action=dashboard">Dashboard</a></li>
+                <li><a href="/index.php?controller=auth&action=logout">Déconnexion</a></li>
+            </ul>
     </footer>
 </body>
 </html>

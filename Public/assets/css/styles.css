@@ -1,0 +1,91 @@
+/* styles.css */
+
+/* Styles de base (Mobile-First) */
+body {
+  font-size: var(--font-size-content);
+  font-family: var(--font-primary);
+  color: var(--text-main);
+  background-color: var(--color-background);
+  margin: 0;
+  padding: 10px;
+}
+
+header, footer {
+  padding: 10px;
+  background-color: var(--color-footer-background);
+  text-align: center;
+  color: #fff;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-primary);
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: var(--font-size-title-main);
+  line-height: var(--line-height-title-main);
+}
+
+h2 {
+  font-size: var(--font-size-title-1);
+  line-height: var(--line-height-title-1);
+}
+
+/* Boutons et liens */
+button, a {
+  font-size: 16px;
+  padding: 8px 16px;
+  color: #fff;
+  background-color: var(--color-primary);
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, a:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Media Queries */
+/* Tablette (≥ 768px) */
+@media (min-width: 768px) {
+  body {
+      font-size: 16px;
+      padding: 20px;
+  }
+
+  header, footer {
+      padding: 15px;
+  }
+
+  button, a {
+      font-size: 18px;
+      padding: 10px 20px;
+  }
+}
+
+/* Desktop (≥ 1024px) */
+@media (min-width: 1024px) {
+  body {
+      font-size: 18px;
+      padding: 30px;
+  }
+
+  header, footer {
+      padding: 20px;
+  }
+
+  .container {
+      width: 80%;
+      max-width: 1200px;
+      margin: 0 auto;
+  }
+
+  button, a {
+      font-size: 20px;
+      padding: 12px 24px;
+  }
+}
