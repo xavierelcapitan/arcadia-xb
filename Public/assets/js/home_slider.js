@@ -1,4 +1,3 @@
-// Initialisation de Swiper dans home_slider.js
 const swiper = new Swiper('.swiper-container', {
     loop: true,
     pagination: {
@@ -28,3 +27,25 @@ const swiper = new Swiper('.swiper-container', {
         },
     },
 });
+
+// Sélection des éléments
+const modal = document.getElementById("reviewModal");
+const btn = document.getElementById("openModal");
+const closeBtn = document.querySelector(".close");
+
+// Ouvre la modale quand on clique sur le bouton
+btn.onclick = function () {
+    modal.style.display = "block";
+}
+
+// Ferme la modale quand on clique sur le bouton de fermeture (X)
+closeBtn.onclick = function () {
+    modal.style.display = "none";
+}
+
+// Ferme la modale quand on clique en dehors de la modale
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}

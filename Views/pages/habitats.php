@@ -1,10 +1,11 @@
 
+
+    
     <!-- Image de bannière en plein écran avec horaires en superposition -->
     <section class="banner-section">
-        <img src="/assets/images/animals/Arcadia-animals-image17.webp" alt="Elephant" class="banner-img">
+        <img src="/assets/images/animals/Arcadia-animals-image21.webp" alt="Elephant" class="banner-img">
         <div class="banner-text">
-            <p class="banner-hours-title">HORAIRES DU ZOO AUJOURD'HUI :</p>
-            <p class="banner-hours">9h – 19h</p>
+            <p class="page-title">LES HABITATS</p>
         </div>
     </section>
 
