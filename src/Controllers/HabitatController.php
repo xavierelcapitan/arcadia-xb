@@ -17,6 +17,12 @@ class HabitatController
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
 
+    // Récupérer les habitats pour la page publique
+    public function publicHabitats()
+    {
+        return Habitat::getHabitatsWithSpeciesCount();
+    }
+
     // Créer un habitat
     public function createHabitat()
     {

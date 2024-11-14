@@ -256,10 +256,21 @@ button:hover, a:hover {
   color: var(--color-background);
   text-align: center;
   width: 100%;
-  height: 150px; /* Augmentez la hauteur de la bannière */
+  height: 150px;
   display: flex;
-  align-items: center; /* Centre verticalement le texte */
-  justify-content: center; /* Centre horizontalement le texte */
+  align-items: center; 
+  justify-content: center; 
+}
+
+.banner-hours-title {
+  font-size: var(--font-size-title-2);
+  line-height: var(--line-height-title-main) !important;
+  color: var(--color-background) !important;
+  font-weight: bold !important;
+}
+
+.opening-hours {
+  font-size: var(--font-size-title-2); 
 }
 
 
@@ -269,6 +280,7 @@ button:hover, a:hover {
   color: var(--color-background) !important;
   font-weight: bold !important;
 }
+
 
 
 /* Styles pour la section Préparer votre visite */
