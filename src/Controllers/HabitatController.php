@@ -5,6 +5,7 @@
 namespace App\Controllers;
 
 use App\Models\Habitat;
+use App\Models\Animal;
 
 class HabitatController
 {
@@ -168,7 +169,37 @@ class HabitatController
             exit;
         }
     }
-    
+
+    // Récupérer tous les animaux d'un habitat spécifique
+    public function getAnimalsByHabitat($habitatId)
+    {
+        return Animal::findAllByHabitat($habitatId);
+    }
+
+    // Afficher la page des détails de l'habitat
+    public function showHabitatDetails()
+    {
+        // Récupérer l'ID de l'habitat depuis la requête GET
+        $habitatId = isset($_GET['habitat_id']) ? (int)$_GET['habitat_id'] : 0;
+
+        // Vérifier que l'ID de l'habitat est valide
+        if ($habitatId === 0) {
+            echo "ID de l'habitat non valide.";
+            return;
+        }
+
+          // Récupérer les informations de l'habitat spécifique
+    $habitat = Habitat::find($habitatId);
+
+        // Récupérer les animaux pour cet habitat
+        $animals = Animal::findAllByHabitat($habitatId);
+
+        // Définir le titre de la page
+        $pageTitle = 'Détails de l\'habitat';
+
+        // Inclure le layout global avec le contenu de `details_habitat.php`
+        $view = __DIR__ . '/../../Views/pages/details_habitat.php';
+        require_once __DIR__ . '/../../Views/layouts/default.php';
     }
     
-
+    }

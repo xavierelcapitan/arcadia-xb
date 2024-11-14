@@ -7,7 +7,7 @@ $habitats = $habitatController->publicHabitats();
     
     <!-- Image de bannière en plein écran avec horaires en superposition -->
     <section class="banner-section">
-        <img src="/assets/images/animals/Arcadia-animals-image21.webp" alt="Elephant" class="banner-img">
+        <img src="/assets/images/animals/Arcadia-animals-image07.webp" alt="Elephant" class="banner-img">
         <div class="banner-text">
             <p class="page-title">LES HABITATS</p>
         </div>
@@ -29,8 +29,11 @@ $habitats = $habitatController->publicHabitats();
             <div class="experience-card-overlay">
                 <div class="experience-card-content">
                     <h3 class="experience-title-nature"><?php echo htmlspecialchars($habitat->name); ?></h3>
-                    <p class="experience-description"><?php echo htmlspecialchars($habitat->description); ?></p>
-                    <a href="/experiences" class="btn experience-button">Plus de <?php echo htmlspecialchars($habitat->species_count); ?> espèces</a>
+                    <p class="experience-description"><?php echo htmlspecialchars_decode($habitat->description); ?></p>
+                
+                    <a href="index.php?controller=habitat&action=showHabitatDetails&habitat_id=<?php echo $habitat->id; ?>" class="btn experience-button">
+                    Plus de <?php echo htmlspecialchars($habitat->species_count); ?> espèces
+                    </a>
                 </div>
             </div>
         </div>

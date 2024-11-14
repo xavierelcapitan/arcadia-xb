@@ -262,6 +262,21 @@ button:hover, a:hover {
   justify-content: center; 
 }
 
+.habitat-banner {
+  position: absolute;
+
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--color-background);
+  text-align: center;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
+
 .banner-hours-title {
   font-size: var(--font-size-title-2);
   line-height: var(--line-height-title-main) !important;
