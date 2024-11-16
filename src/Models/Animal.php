@@ -99,8 +99,8 @@ public static function findAllByHabitat($habitatId)
     {
         $db = (new self())->getDbInstance();
         $stmt = $db->prepare("
-            INSERT INTO animals (name, race, age, weight, habitat_id, food_type, food_quantity, image_url, created_at)
-            VALUES (:name, :race, :age, :weight, :habitat_id, :food_type, :food_quantity, :image_url, NOW())
+            INSERT INTO animals (name, race, age, weight, description, habitat_id, food_type, food_quantity, image_url, created_at)
+            VALUES (:name, :race, :age, :weight, :description, :habitat_id, :food_type, :food_quantity, :image_url, NOW())
         ");
         $stmt->execute($data);
     }
@@ -122,7 +122,7 @@ public static function findAllByHabitat($habitatId)
         $db = (new self())->getDbInstance();
         $stmt = $db->prepare("
             UPDATE animals 
-            SET name = :name, race = :race, age = :age, weight = :weight, habitat_id = :habitat_id, 
+            SET name = :name, race = :race, age = :age, description = :description, weight = :weight, habitat_id = :habitat_id, 
                 food_type = :food_type, food_quantity = :food_quantity, image_url = :image_url
             WHERE id = :id
         ");

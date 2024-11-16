@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+namespace App\Models;
 
 use App\Models\FeedingReport;
 use App\Config\SessionManager;
@@ -38,7 +39,4 @@ public function addReport()
     header('Location: /index.php?controller=animal&action=showAnimalDetails&id=' . $animal_id);
     exit;
 }
-
-    
-    
 }

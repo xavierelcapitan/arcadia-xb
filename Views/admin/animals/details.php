@@ -40,6 +40,8 @@ $user_role = SessionManager::get('user_role');
 
     <!-- Type de nourriture de l'animal -->
     <p><strong>Type de nourriture : </strong><?= htmlspecialchars($animal->food_type) ?></p>
+
+    <p><strong>Description : </strong><?php echo htmlspecialchars_decode($animal->description); ?></p>
 </div>
 
 

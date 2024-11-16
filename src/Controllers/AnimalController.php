@@ -91,6 +91,8 @@ class AnimalController
                     'food_type' => $selectedFoodType,
                     'food_quantity' => $_POST['food_quantity'],
                     'image_url' => $imageUrl,
+                    'description' => $_POST['description'],
+
                 ]);
     
                 // Redirection après la création
@@ -170,6 +172,8 @@ class AnimalController
                         'food_type' => $_POST['food_type'],
                         'food_quantity' => $_POST['food_quantity'],
                         'image_url' => $imageUrl,
+                        'description' => $_POST['description'],
+
                     ]);
 
                     header('Location: /index.php?controller=animal&action=listAnimals');
