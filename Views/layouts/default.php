@@ -108,5 +108,6 @@
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="/assets/js/home_slider.js"></script>
+    <script src="/assets/js/animal_count.js"></script>
 </body>
 </html>

@@ -35,4 +35,31 @@ class PublicAnimalController
         $pageTitle = "Détails de : $animal->name";
         require_once __DIR__ . '/../../Views/layouts/default.php';
     }
+
+    public function incrementView()
+    {
+        if (isset($_GET['id']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_GET['id'];
+    
+            // Récupération de l'animal depuis la base de données
+            $animal = \App\Models\Animal::getById($id);
+            if ($animal) {
+                // Incrémentation du compteur de vues
+                $newViews = $animal->views + 1;
+                \App\Models\Animal::updateViews($id, $newViews);
+    
+                // Retourne une réponse JSON au client
+                echo json_encode(['success' => true, 'new_views' => $newViews]);
+            } else {
+                // Retourne une erreur si l'animal n'existe pas
+                echo json_encode(['success' => false, 'error' => 'Animal introuvable']);
+            }
+        } else {
+            // Requête invalide
+            echo json_encode(['success' => false, 'error' => 'Requête invalide']);
+        }
+        exit;
+    }
+    
+
 }

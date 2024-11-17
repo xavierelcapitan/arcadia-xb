@@ -28,7 +28,9 @@ if (!$habitatId || empty($animals)) {
         <?php foreach ($animals as $animal) : ?>
             <div class="animal-card-detail">
                 <div class="animal-card-img-container-detail">
-                <a href="index.php?controller=publicAnimal&action=showAnimalDetails&id=<?php echo $animal->id; ?>" class="animal-link">
+                    <a href="index.php?controller=publicAnimal&action=showAnimalDetails&id=<?php echo $animal->id; ?>" 
+                       class="animal-link" 
+                       data-id="<?php echo $animal->id; ?>">
                         <img src="<?php echo htmlspecialchars($animal->image_url); ?>" alt="Image de <?php echo htmlspecialchars($animal->name); ?>" class="animal-card-img-detail">
                         <div class="animal-card-overlay-detail">
                             <div class="animal-card-content-detail">
@@ -43,6 +45,10 @@ if (!$habitatId || empty($animals)) {
     </div>
 </div>
 
+
         <div class="text-center my-5">
           <a href="/index.php?controller=page&action=habitats" class="btn btn-secondary">Retour aux habitats</a>
         </div>
+
+
+        <script src="/assets/js/animal_count.js"></script>

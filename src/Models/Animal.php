@@ -137,5 +137,14 @@ public static function findAllByHabitat($habitatId)
         $stmt = $db->prepare('DELETE FROM animals WHERE id = :id');
         return $stmt->execute([':id' => $id]);
     }
+
+    public static function updateViews($id, $newViews)
+    {
+        $db = self::getDbInstance();
+        $stmt = $db->prepare("UPDATE animals SET views = :views WHERE id = :id");
+        $stmt->execute(['views' => $newViews, 'id' => $id]);
+    }
+    
+
 }
 
