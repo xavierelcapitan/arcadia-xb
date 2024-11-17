@@ -46,5 +46,10 @@
         <p><strong>Type de nourriture :</strong> <?php echo htmlspecialchars($feeding_report->food_type_report ?? 'Pas de données disponibles'); ?></p>
         <p><strong>Quantité de nourriture / jour :</strong> <?php echo htmlspecialchars($feeding_report->food_quantity ?? 'Pas de données disponibles'); ?> kg</p>
     </div>
+      <!-- Retour -->
+      <div class="text-center my-5">
+    <button onclick="window.history.back()" class="btn btn-secondary">Retour</button>
+</div>
+
 </section>
 
