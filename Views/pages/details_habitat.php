@@ -42,3 +42,7 @@ if (!$habitatId || empty($animals)) {
         <?php endforeach; ?>
     </div>
 </div>
+
+        <div class="text-center my-5">
+          <a href="/index.php?controller=page&action=habitats" class="btn btn-secondary">Retour aux habitats</a>
+        </div>

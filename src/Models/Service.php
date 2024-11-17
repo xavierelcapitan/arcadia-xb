@@ -45,4 +45,6 @@ class Service extends Model
         $stmt = $db->prepare("DELETE FROM services WHERE id = :id");
         return $stmt->execute(['id' => $id]);
     }
+
+    
 }

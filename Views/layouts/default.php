@@ -1,4 +1,3 @@
-<!-- Views/layouts/default.php -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,41 +13,38 @@
 </head>
 <body>
 
-   <header>
-   <div class="container-fluid">
-    <!-- Section Header avec logo et menu burger -->
-    <header class="header-container">
-    <div class="logo-container">
-    <a href="/" class="logo-link">
-        <img src="/assets/images/pict/logoarcadia2footer.png" alt="Logo Arcadia" class="logo-img">
-    </a>
-</div>
+   <!-- Header principal -->
+   <header class="header-container">
+    <!-- Logo -->
+    <div class="logo-container my-3">
+        <a href="/" class="logo-link">
+            <img src="/assets/images/pict/logoarcadia2footer.png" alt="Logo Arcadia" class="logo-img">
+        </a>
+    </div>
 
-        <!-- Bouton Menu Burger -->
-        <button class="btn menu-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
-    <span class="burger-icon"></span>
-</button>
+    <!-- Bouton Menu Burger -->
+    <button class="menu-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+        ☰ <!-- Symbole classique pour un menu burger -->
+    </button>
 
-
-    </header>
-
-    <!-- Menu Burger Offcanvas -->
-    <div class="offcanvas offcanvas-start menu-burger" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+    <!-- Menu Offcanvas -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menu</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
             <ul class="nav flex-column">
-                <li class="nav-item"><a class="nav-link" href="/">Retour vers la page d’accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="/services">Accès à tous les services</a></li>
-                <li class="nav-item"><a class="nav-link" href="/habitats">Accès à tous les habitats</a></li>
-                <li class="nav-item"><a class="nav-link" href="/billets">Billets</a></li>
-                <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="/index.php?controller=page&action=services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="/index.php?controller=page&action=habitats">Habitats</a></li>
+                <li class="nav-item"><a class="nav-link" href="/index.php?controller=page&action=contact">Contact</a></li>
             </ul>
         </div>
     </div>
-    </header>
+</header>
+
+
 
         <!-- Navigation Principale sous le logo -->
         <nav class="main-nav">

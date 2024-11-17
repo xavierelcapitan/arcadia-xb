@@ -4,6 +4,7 @@ use App\Controllers\HabitatController;
 $habitatController = new HabitatController();
 $habitats = $habitatController->publicHabitats();
 ?>
+
     
     <!-- Image de bannière en plein écran avec horaires en superposition -->
     <section class="banner-section">

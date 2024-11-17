@@ -14,13 +14,13 @@
         <h2 class="visit-title mb-4">Préparer ma visite</h2>
         <a href="/services" class="button-services mb-4">SERVICES</a>
     </section>
-    <div class="row visit-buttons">
+   
         <nav class="main-nav">
             <a href="/services" class="main-nav-button main-nav-button-services">PETIT TRAIN</a>
             <a href="/habitats" class="main-nav-button main-nav-button-famille">EN FAMILLE</a>
             <a href="/contact" class="main-nav-button main-nav-button-contact">DEVENEZ BÉNÉVOLE</a>
         </nav>
-    </div>
+   
 
 
     <!-- Section Expérience inoubliable -->

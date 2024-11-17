@@ -156,4 +156,30 @@ class ServicesController
             exit;
         }
     }
+
+// Détails d'un service
+public function showServiceDetails()
+{
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $service = Service::getById($id);
+
+        if (!$service) {
+            // Si le service n'existe pas, rediriger
+            header('Location: /index.php?controller=services&action=listServices');
+            exit;
+        }
+
+        // Charger la vue des détails
+        $view = __DIR__ . '/../../Views/pages/details_services.php';
+        $pageTitle = $service->name; // Utilise le nom du service comme titre
+        require_once __DIR__ . '/../../Views/layouts/default.php';
+    } else {
+        // Redirection si aucun ID n'est fourni
+        header('Location: /index.php?controller=services&action=listServices');
+        exit;
+    }
+}
+
+
 }
