@@ -14,14 +14,20 @@ body {
 
 /* Sidebar Styles */
 .admin-sidebar {
-  width: 250px;
-  background-color: var(--color-accent);
-  color: white;
-  height: 100vh;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  height: 100vh; 
+  width: 250px; 
+  background-color: var(--color-accent); 
+  color: white; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: auto; 
+  z-index: 10; 
 }
+
 
 .admin-sidebar .logo {
   display: flex;
@@ -112,25 +118,27 @@ body {
 
 /* Main Content */
 .admin-main {
-  display: flex;
-  flex-direction: column; 
-  flex: 1; 
-  margin-left: 0; 
+  margin-left: 250px; 
   padding: 20px;
-  background-color: #F5F5F5; 
-  overflow-y: auto; 
+  background-color: #F5F5F5;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: calc(100% - 250px); 
+  box-sizing: border-box; 
 }
 
 /* Style pour le titre des pages */
-.admin-header h1 {
-  font-size: 2rem; /* Taille moderne */
-  color: var(--color-primary); /* Utilise la couleur primaire verte */
-  font-weight: bold; /* Texte en gras */
-  text-transform: uppercase; /* Texte en majuscules pour un effet dynamique */
-  border-bottom: 3px solid var(--color-primary-hover); /* Ligne décorative en dessous */
-  display: inline-block; /* Assure que la bordure est ajustée au texte */
-  margin-bottom: 20px; /* Espacement sous le titre */
-  padding-bottom: 5px; /* Espacement entre le texte et la ligne */
+.admin-header h1 { 
+  font-size: 2rem; 
+  color: var(--color-primary); 
+  font-weight: bold; 
+  text-transform: uppercase; 
+  border-bottom: 3px solid var(--color-primary-hover); 
+  display: inline-block; 
+  margin-bottom: 20px; 
+  padding-bottom: 5px; 
 }
 
 

@@ -9,7 +9,7 @@
     </div>
     <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <textarea class="form-control tinymce" id="description" name="description"><?= isset($habitat) ? htmlspecialchars($habitat->description) : '' ?></textarea>
+        <textarea class="form-control tinymce" id="description" name="description"><?= isset($habitat) ? $habitat->description : '' ?></textarea>
 
     <div class="mb-3">
         <label for="image_url" class="form-label">Image</label>

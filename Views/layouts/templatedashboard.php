@@ -112,5 +112,17 @@
     <script src="/assets/js/filters_veterinary_reports.js"></script>
     <script src="/assets/js/charts_dashboard.js"></script>
     <script src="/assets/js/animal_count.js"></script>
+    <script>
+    tinymce.init({
+        selector: 'textarea.tinymce', 
+        plugins: 'advlist autolink link image lists',
+        toolbar: 'bold italic | alignleft aligncenter alignright alignjustify | bullist numlist|',
+        menubar: false, 
+        valid_elements: '*[*]', 
+        forced_root_block: '', 
+        content_css: false 
+    });
+</script>
+
 </body>
 </html>
