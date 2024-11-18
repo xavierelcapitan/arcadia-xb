@@ -2,11 +2,17 @@
 // Public/index.php
 
 use App\Config\Autoloader;
+use Dotenv\Dotenv; // Import du package dotenv
 
-// Charger l'autoloader
+// Charger l'autoloader de votre application
 require_once __DIR__ . '/../src/Config/Autoloader.php';
+// Charger l'autoloader de Composer
 require_once __DIR__ . '/../vendor/autoload.php';
 Autoloader::register();
+
+// Charger les variables d'environnement depuis le fichier .env
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
 
 // Récupérer le controller et l'action depuis les paramètres d'URL (ou par défaut)
 $controller = isset($_GET['controller']) ? ucfirst($_GET['controller']) . 'Controller' : 'MainController';

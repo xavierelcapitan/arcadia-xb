@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Config;  
+namespace App\Config;
 
 use PDO;
 
@@ -8,17 +8,14 @@ class Db extends PDO
 {
     private static $instance = null;
 
-    private const DBHOST = 'mysql-elcapitanstudi.alwaysdata.net';
-    private const DBNAME = 'elcapitanstudi_ecf';
-    private const DBUSER = '373289_elcapitan';
-    private const DBPASS = 'Schmidt-Bdd/elc83';
-
     private function __construct()
     {
-        $dsn = 'mysql:host=' . self::DBHOST . ';dbname=' . self::DBNAME . ';charset=utf8';
+        // Construction dynamique du DSN à partir des variables d'environnement
+        $dsn = 'mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'] . ';charset=' . $_ENV['DB_CHARSET'];
 
         try {
-            parent::__construct($dsn, self::DBUSER, self::DBPASS);
+            // Connexion à la base avec les informations provenant du .env
+            parent::__construct($dsn, $_ENV['DB_USER'], $_ENV['DB_PASS']);
             $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
         } catch (\PDOException $e) {
