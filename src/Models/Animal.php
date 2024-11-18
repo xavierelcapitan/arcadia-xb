@@ -78,6 +78,20 @@ class Animal extends Model
        $stmt->execute([':id' => $id]);
        return $stmt->fetch(PDO::FETCH_OBJ);
    }
+
+   // Récupérer tous les animaux d'un habitat spécifique
+public static function findAllByHabitat($habitatId)
+{
+    $db = (new self())->getDbInstance();
+    $stmt = $db->prepare('
+        SELECT id, name, race, image_url
+        FROM animals
+        WHERE habitat_id = :habitat_id
+    ');
+    $stmt->execute([':habitat_id' => $habitatId]);
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
    
 
     // Ajouter un nouvel animal
@@ -85,8 +99,8 @@ class Animal extends Model
     {
         $db = (new self())->getDbInstance();
         $stmt = $db->prepare("
-            INSERT INTO animals (name, race, age, weight, habitat_id, food_type, food_quantity, image_url, created_at)
-            VALUES (:name, :race, :age, :weight, :habitat_id, :food_type, :food_quantity, :image_url, NOW())
+            INSERT INTO animals (name, race, age, weight, description, habitat_id, food_type, food_quantity, image_url, created_at)
+            VALUES (:name, :race, :age, :weight, :description, :habitat_id, :food_type, :food_quantity, :image_url, NOW())
         ");
         $stmt->execute($data);
     }
@@ -108,7 +122,7 @@ class Animal extends Model
         $db = (new self())->getDbInstance();
         $stmt = $db->prepare("
             UPDATE animals 
-            SET name = :name, race = :race, age = :age, weight = :weight, habitat_id = :habitat_id, 
+            SET name = :name, race = :race, age = :age, description = :description, weight = :weight, habitat_id = :habitat_id, 
                 food_type = :food_type, food_quantity = :food_quantity, image_url = :image_url
             WHERE id = :id
         ");
@@ -123,5 +137,14 @@ class Animal extends Model
         $stmt = $db->prepare('DELETE FROM animals WHERE id = :id');
         return $stmt->execute([':id' => $id]);
     }
+
+    public static function updateViews($id, $newViews)
+    {
+        $db = self::getDbInstance();
+        $stmt = $db->prepare("UPDATE animals SET views = :views WHERE id = :id");
+        $stmt->execute(['views' => $newViews, 'id' => $id]);
+    }
+    
+
 }
 

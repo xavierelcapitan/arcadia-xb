@@ -6,3 +6,4 @@ src/Views/home.php
 Config/App.php
 /Public/assets/uploads/
 /Public/assets/images/
+.env

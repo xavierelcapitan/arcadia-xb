@@ -43,5 +43,14 @@ class FeedingReport extends Model
     }
     
     
-    
+       // Méthode pour obtenir tous les rapports de nourriture d'un animal spécifique
+       public static function getReportsByAnimalId($animalId)
+       {
+           $db = self::getDbInstance(); // Utilise la méthode héritée de Model
+           $stmt = $db->prepare("SELECT * FROM feeding_reports WHERE animal_id = :animal_id ORDER BY feeding_date DESC");
+           $stmt->bindParam(':animal_id', $animalId, PDO::PARAM_INT);
+           $stmt->execute();
+           
+           return $stmt->fetchAll(PDO::FETCH_OBJ); // Retourne tous les rapports sous forme d'objets
+       }
 }

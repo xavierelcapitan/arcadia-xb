@@ -68,4 +68,18 @@ class Habitat extends Model
         $stmt = $db->prepare('DELETE FROM habitats WHERE id = :id');
         return $stmt->execute([':id' => $id]);
     }
+
+    
+ // Méthode pour récupérer tous les habitats avec le nombre d'espèces
+ public static function getHabitatsWithSpeciesCount()
+ {
+     $db = (new self())->getDbInstance();
+     $stmt = $db->query("
+         SELECT h.*, COUNT(a.id) AS species_count 
+         FROM habitats h
+         LEFT JOIN animals a ON a.habitat_id = h.id
+         GROUP BY h.id
+     ");
+     return $stmt->fetchAll(PDO::FETCH_OBJ);
+ }
 }

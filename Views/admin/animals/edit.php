@@ -9,6 +9,12 @@
         <label for="race" class="form-label">Race</label>
         <input type="text" class="form-control" id="race" name="race" value="<?= htmlspecialchars($animal->race) ?>" required>
     </div>
+
+    <div class="form-group mb-3">
+        <label for="description">Description de l'animal</label>
+        <textarea name="description" id="description" rows="5" class="form-control tinymce"><?php echo isset($animal) ? htmlspecialchars($animal->description) : ''; ?></textarea>
+    </div>
+
     <div class="mb-3">
         <label for="age" class="form-label">Âge</label>
         <input type="number" class="form-control" id="age" name="age" value="<?= htmlspecialchars($animal->age) ?>" required>

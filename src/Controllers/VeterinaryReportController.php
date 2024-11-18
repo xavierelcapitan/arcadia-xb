@@ -8,6 +8,7 @@ use App\Config\SessionManager;
 use App\Models\Animal;
 
 
+
 class VeterinaryReportController
 {
     // Afficher le formulaire pour ajouter un rapport vétérinaire
@@ -125,5 +126,7 @@ public function summaries()
 
     echo json_encode($reports);
 }
+
+
 
 }

@@ -30,11 +30,6 @@
                     <li><a href="/index.php?controller=admin&action=users">Utilisateurs</a></li>
                     <li><a href="/index.php?controller=admin&action=horaires">Horaires</a></li>
                     <li><a href="/index.php?controller=services&action=listservices">Services</a></li>
-
-                    
-                    
-                   
-                    
                 </ul>
                 
                     <hr>
@@ -43,9 +38,11 @@
         <li><a href="/index.php?controller=animal&action=listAnimals">Liste des Animaux</a></li>
         <li><a href="/index.php?controller=habitat&action=listHabitats">Habitats</a></li>
         <li><a href="/index.php?controller=animal&action=showSummaries">Résumés des Rapports</a></li>
-        <li><a href="/index.php?controller=admin&action=stats">Stats</a></li>
     </ul>
 </li>
+
+<h4>Avis</h4>
+<a href="/index.php?controller=review&action=moderation">Modération des Avis</a>
 
 <div>
 <a href="/index.php?controller=auth&action=logout">Log Out</a>
@@ -133,5 +130,6 @@ if (isset($view)) {
     <script src="/assets/js/datatables_setup.js"></script>
     <script src="/assets/js/filters_veterinary_reports.js"></script>
     <script src="/assets/js/charts_dashboard.js"></script>
+    <script src="/assets/js/animal_count.js"></script>
 </body>
 </html>

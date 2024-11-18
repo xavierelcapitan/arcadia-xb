@@ -1,4 +1,5 @@
 <?php
+// src/Config/App.php
 
 namespace App\Config;
 use App\Controllers\MainController;
@@ -52,5 +53,12 @@ class Main
             $controller = new MainController();
             $controller->index();
         }
+
+        if ($_GET['controller'] === 'publicAnimal' && $_GET['action'] === 'incrementView') {
+            $controller = new \App\Controllers\PublicAnimalController();
+            $controller->incrementView();
+        }
+        
     }
+    
 }

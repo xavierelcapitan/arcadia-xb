@@ -20,7 +20,8 @@
                     <td><?= htmlspecialchars($animal->name) ?></td>
                     <td><?= htmlspecialchars($animal->race) ?></td>
                     <td><?= htmlspecialchars($animal->habitat_name) ?></td>
-                    <td>vue</td>
+                    <td><?php echo htmlspecialchars($animal->views ?? 0); ?></td>
+
                     <td>
                         <a href="/index.php?controller=animal&action=showAnimalDetails&id=<?= $animal->id ?>" class="btn btn-info">Détails</a>
 

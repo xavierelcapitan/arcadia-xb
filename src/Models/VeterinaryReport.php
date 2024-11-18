@@ -26,6 +26,18 @@ class VeterinaryReport extends Model
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    // Méthode pour obtenir tous les rapports d'un animal spécifique
+    public static function getReportsByAnimalId($animalId)
+    {
+        $db = self::getDbInstance(); // Appel cohérent à la méthode statique
+        $stmt = $db->prepare("SELECT * FROM veterinary_reports WHERE animal_id = :animal_id ORDER BY last_checkup_date DESC");
+        $stmt->bindParam(':animal_id', $animalId, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_OBJ); // Retourne tous les rapports sous forme d'objets
+    }
+    
+
     // Ajouter un rapport vétérinaire
     public static function add($data)
     {
@@ -152,5 +164,14 @@ public static function getLatestReportsForAnimalsWithFilters($filters)
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
 
+public static function getLatestByAnimalId($animalId)
+{
+    $db = (new self())->getDbInstance();
+    $stmt = $db->prepare("SELECT * FROM veterinary_reports WHERE animal_id = :animal_id ORDER BY last_checkup_date DESC LIMIT 1");
+    $stmt->bindParam(':animal_id', $animalId, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    return $stmt->fetch(PDO::FETCH_OBJ); // Retourne un objet contenant le dernier rapport
+}
 
 }

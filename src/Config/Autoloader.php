@@ -1,4 +1,5 @@
 <?php
+// src/Config/Autoloader.php
 
 namespace App\Config;
 

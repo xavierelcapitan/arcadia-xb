@@ -7,10 +7,10 @@ use App\Config\SessionManager;
 
 class FeedingReportController
 {
-// Dans FeedingReportController.php
+
 public function addReport()
 {
-    // Démarrer la session si ce n'est pas déjà fait
+    // Démarrer la session 
     SessionManager::start();
 
     // Récupérer l'ID de l'utilisateur connecté
@@ -28,17 +28,16 @@ public function addReport()
     // Ajouter un rapport de nourrissage
     FeedingReport::add([
         'animal_id' => $animal_id,
-        'user_id' => $user_id, // Inclure l'utilisateur connecté
+        'user_id' => $user_id, 
         'food_quantity' => $_POST['food_quantity'],
         'feeding_date' => $_POST['feeding_date'],
         'food_type_report' => $_POST['food_type_report'] // Assurez-vous que ce nom correspond à votre formulaire
     ]);
 
+    var_dump($_POST);
+
     // Redirection après ajout
     header('Location: /index.php?controller=animal&action=showAnimalDetails&id=' . $animal_id);
     exit;
 }
-
-    
-    
 }
