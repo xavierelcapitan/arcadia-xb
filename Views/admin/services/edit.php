@@ -1,6 +1,5 @@
 <!-- Views/admin/services/edit.php -->
-<div class="container mt-5">
-    <h2 class="mb-4">Modifier le Service</h2>
+<div class="container">
     <form action="/index.php?controller=services&action=editService&id=<?php echo $service->id; ?>" method="POST" enctype="multipart/form-data">
         <!-- Nom du service -->
         <div class="mb-3">

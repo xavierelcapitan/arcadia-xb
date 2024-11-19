@@ -39,6 +39,7 @@ class UserController
     
         // Afficher le formulaire de création d'utilisateur
         $view = __DIR__ . '/../../Views/admin/users/create.php';
+        $pageTitle = 'Ajouter un nouvel utilisateur';
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
     
@@ -51,7 +52,8 @@ class UserController
             $user = User::find($id);
 
             if ($user) {
-                $view = __DIR__ . '/../../Views/admin/users/edit.php';  // Vue d'édition
+                $view = __DIR__ . '/../../Views/admin/users/edit.php';  
+                $pageTitle = 'Modifier un utilisateur';
                 require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
             } else {
                 // Redirection si l'utilisateur n'existe pas
@@ -122,8 +124,8 @@ class UserController
     public function listUsers()
     {
         $users = User::all();
-        $view = __DIR__ . '/../../Views/admin/users/list.php';  // Chemin correct vers la vue liste
-        require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';  // Utilisation du bon layout
+        $view = __DIR__ . '/../../Views/admin/users/list.php';  
+        require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';  
     }
 
     public function reviewModeration()
@@ -142,8 +144,7 @@ public function approveReview()
     } else {
         $_SESSION['error'] = "Impossible d'approuver l'avis. Veuillez réessayer.";
     }
-    header("Location: /admin/reviews"); // Redirige vers la page de modération
+    header("Location: /admin/reviews"); 
     exit();
 }
-
 }

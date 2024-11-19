@@ -1,7 +1,4 @@
 <!-- Views/admin/habitats/edit.php -->
- <!-- modification du contenu de l'habitat -->
-<h1>Modifier un habitat</h1>
-
 <form method="POST" action="/index.php?controller=habitat&action=editHabitat&id=<?= $habitat->id ?>" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="name" class="form-label">Nom</label>
@@ -18,7 +15,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
 </form>
-
 
 <?php if (!empty($errors)) : ?>
     <div class="alert alert-danger">

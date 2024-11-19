@@ -94,6 +94,12 @@ public static function getRejectedReviews()
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
 
+public static function getCount()
+{
+    $db = (new self())->getDbInstance();
+    $stmt = $db->query("SELECT COUNT(*) AS count FROM reviews");
+    return $stmt->fetch(PDO::FETCH_OBJ)->count;
+}
 
 }
 

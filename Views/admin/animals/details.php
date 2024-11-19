@@ -87,7 +87,7 @@ $user_role = SessionManager::get('user_role');
         <table class="table">
             <thead>
                 <tr>
-                    <th>Date</th> // afficher date jj-mm-aa
+                    <th>Date</th> 
                     <th>Type de nourriture</th>
                     <th>Quantité (g)</th>
                     <th>Ajouté par</th>

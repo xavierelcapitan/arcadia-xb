@@ -145,6 +145,33 @@ public static function findAllByHabitat($habitatId)
         $stmt->execute(['views' => $newViews, 'id' => $id]);
     }
     
+ 
+    public static function getCount()
+    {
+        $db = (new self())->getDbInstance();
+        $stmt = $db->query("SELECT COUNT(*) AS count FROM animals");
+        return $stmt->fetch(PDO::FETCH_OBJ)->count;
+    }
 
+    public static function getTotalViews()
+    {
+        $db = (new self())->getDbInstance();
+        $stmt = $db->query("SELECT SUM(views) AS total FROM animals");
+        return $stmt->fetch(PDO::FETCH_OBJ)->total;
+    }
+
+    public static function getTopViewed(int $limit)
+    {
+        $db = (new self())->getDbInstance();
+        $stmt = $db->prepare("SELECT name, views FROM animals ORDER BY views DESC LIMIT :limit");
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    }
+    
+    
+ 
 }
+
+
 

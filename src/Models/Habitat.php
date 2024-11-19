@@ -82,4 +82,19 @@ class Habitat extends Model
      ");
      return $stmt->fetchAll(PDO::FETCH_OBJ);
  }
+
+ public static function getCount()
+    {
+        $db = (new self())->getDbInstance();
+        $stmt = $db->query("SELECT COUNT(*) AS count FROM habitats");
+        return $stmt->fetch(PDO::FETCH_OBJ)->count;
+    }
+
+    public static function getAnimalDistribution() {
+        $db = (new self())->getDbInstance();
+        $stmt = $db->query("SELECT h.name, COUNT(a.id) as count FROM habitats h LEFT JOIN animals a ON h.id = a.habitat_id GROUP BY h.name");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+
 }

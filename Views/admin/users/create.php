@@ -1,6 +1,4 @@
 <!-- Views/admin/users/create.php -->
-<h1>Créer un nouvel utilisateur</h1>
-
 <form action="/index.php?controller=user&action=createUser" method="POST">
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>

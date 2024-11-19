@@ -1,7 +1,6 @@
 <!-- Views/admin/services/create.php -->
 
-<div class="container mt-5">
-    <h2 class="mb-4">Ajouter un Service</h2>
+<div class="container">
     <form action="/index.php?controller=services&action=createService" method="POST" enctype="multipart/form-data">
         <!-- Nom du service -->                       
         <div class="mb-3">

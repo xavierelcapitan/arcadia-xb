@@ -78,6 +78,7 @@ class HabitatController
             }
         } else {
             $view = __DIR__ . '/../../Views/admin/habitats/create.php';
+            $pageTitle = 'Ajouter un nouvel habitat';
             require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
         }
     }

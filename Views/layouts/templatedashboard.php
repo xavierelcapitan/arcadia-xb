@@ -13,67 +13,86 @@
 
     <!-- Admin CSS -->
     <link rel="stylesheet" href="/assets/css/admin.css">
-
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 </head>
 <body>
+    <!-- Menu pour mobile -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-lg-none">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/assets/images/pict/LOGOARCADIAFOOTERXAVIER.png" alt="Logo" class="logo-mobile">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mobileMenu">
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'dashboard' ? 'active' : '' ?>" href="/index.php?controller=admin&action=dashboard"><i class="fas fa-home"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'users' ? 'active' : '' ?>" href="/index.php?controller=admin&action=users"><i class="fas fa-users"></i> Utilisateurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'horaires' ? 'active' : '' ?>" href="/index.php?controller=admin&action=horaires"><i class="fas fa-clock"></i> Horaires</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'services' ? 'active' : '' ?>" href="/index.php?controller=services&action=listservices"><i class="fas fa-concierge-bell"></i> Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'animals' ? 'active' : '' ?>" href="/index.php?controller=animal&action=listAnimals"><i class="fas fa-paw"></i> Liste des Animaux</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'habitats' ? 'active' : '' ?>" href="/index.php?controller=habitat&action=listHabitats"><i class="fas fa-tree"></i> Habitats</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'reviews' ? 'active' : '' ?>" href="/index.php?controller=review&action=moderation"><i class="fas fa-comments"></i> Modération des Avis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.php?controller=auth&action=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="dashboard">
-        <!-- Sidebar -->
-        <aside class="admin-sidebar">
+        <!-- Sidebar pour desktop -->
+        <aside class="admin-sidebar d-none d-lg-flex">
             <div class="logo">
                 <img src="/assets/images/pict/LOGOARCADIAFOOTERXAVIER.png" alt="Logo">
             </div>
-           
             <ul class="menu">
                 <li class="menu-item <?= $activePage === 'dashboard' ? 'active' : '' ?>">
-                    <a href="/index.php?controller=admin&action=dashboard">
-                        <i class="fas fa-home"></i> Dashboard
-                    </a>
+                    <a href="/index.php?controller=admin&action=dashboard"><i class="fas fa-home"></i> Dashboard</a>
                 </li>
                 <li class="menu-item <?= $activePage === 'users' ? 'active' : '' ?>">
-                    <a href="/index.php?controller=admin&action=users">
-                        <i class="fas fa-users"></i> Utilisateurs
-                    </a>
+                    <a href="/index.php?controller=admin&action=users"><i class="fas fa-users"></i> Utilisateurs</a>
                 </li>
                 <li class="menu-item <?= $activePage === 'horaires' ? 'active' : '' ?>">
-                    <a href="/index.php?controller=admin&action=horaires">
-                        <i class="fas fa-clock"></i> Horaires
-                    </a>
+                    <a href="/index.php?controller=admin&action=horaires"><i class="fas fa-clock"></i> Horaires</a>
                 </li>
                 <li class="menu-item <?= $activePage === 'services' ? 'active' : '' ?>">
-                    <a href="/index.php?controller=services&action=listservices">
-                        <i class="fas fa-concierge-bell"></i> Services
-                    </a>
+                    <a href="/index.php?controller=services&action=listservices"><i class="fas fa-concierge-bell"></i> Services</a>
                 </li>
                 <li class="menu-item <?= $activePage === 'animals' ? 'active' : '' ?>">
-                    <a href="/index.php?controller=animal&action=listAnimals">
-                        <i class="fas fa-paw"></i> Liste des Animaux
-                    </a>
+                    <a href="/index.php?controller=animal&action=listAnimals"><i class="fas fa-paw"></i> Liste des Animaux</a>
                 </li>
                 <li class="menu-item <?= $activePage === 'habitats' ? 'active' : '' ?>">
-                    <a href="/index.php?controller=habitat&action=listHabitats">
-                        <i class="fas fa-tree"></i> Habitats
-                    </a>
+                    <a href="/index.php?controller=habitat&action=listHabitats"><i class="fas fa-tree"></i> Habitats</a>
                 </li>
                 <li class="menu-item <?= $activePage === 'reviews' ? 'active' : '' ?>">
-                    <a href="/index.php?controller=review&action=moderation">
-                        <i class="fas fa-comments"></i> Modération des Avis
-                    </a>
+                    <a href="/index.php?controller=review&action=moderation"><i class="fas fa-comments"></i> Modération des Avis</a>
                 </li>
             </ul>
             <div class="logout">
-                <a href="/index.php?controller=auth&action=logout" class="menu-item logout">
-                    <i class="fas fa-sign-out-alt"></i> Log Out
-                </a>
+                <a href="/index.php?controller=auth&action=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
             </div>
         </aside>
 
-        <!-- Main Content -->
+        <!-- Contenu principal -->
         <main class="admin-main">
             <header class="admin-header">
                 <h1><?= $pageTitle ?? 'Tableau de bord' ?></h1>
-               
             </header>
             <section class="admin-content">
                 <?php 
@@ -94,35 +113,7 @@
         </main>
     </div>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-
-    <!-- TinyMCE -->
-    <script src="https://cdn.tiny.cloud/1/xxwj3ndzqvtjri3i2yctdbu6s1pzq97jj4hs1d5a2fdgvuu4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-
-    <!-- Scripts personnalisés -->
-    <script src="/assets/js/burger-menu.js"></script>
-    <script src="/assets/js/datatables_setup.js"></script>
-    <script src="/assets/js/filters_veterinary_reports.js"></script>
-    <script src="/assets/js/charts_dashboard.js"></script>
-    <script src="/assets/js/animal_count.js"></script>
-    <script>
-    tinymce.init({
-        selector: 'textarea.tinymce', 
-        plugins: 'advlist autolink link image lists',
-        toolbar: 'bold italic | alignleft aligncenter alignright alignjustify | bullist numlist|',
-        menubar: false, 
-        valid_elements: '*[*]', 
-        forced_root_block: '', 
-        content_css: false 
-    });
-</script>
-
 </body>
 </html>

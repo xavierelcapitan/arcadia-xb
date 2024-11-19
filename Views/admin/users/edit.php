@@ -1,4 +1,4 @@
-<h1>Modifier un utilisateur</h1>
+
 <form method="POST" action="/index.php?controller=user&action=updateUser">
     <!-- Champ hidden pour l'ID de l'utilisateur -->
     <input type="hidden" name="id" value="<?= htmlspecialchars($user->id) ?>">

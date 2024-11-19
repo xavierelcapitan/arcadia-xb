@@ -1,6 +1,4 @@
 <!-- Views/admin/habitats/create.php -->
-<h1>Créer un habitat</h1>
-
 <form method="POST" action="/index.php?controller=habitat&action=createHabitat" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="name" class="form-label">Nom</label>

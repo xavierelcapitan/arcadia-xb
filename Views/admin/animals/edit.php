@@ -1,5 +1,3 @@
-<h1>Modifier l'animal</h1>
-
 <form method="POST" action="/index.php?controller=animal&action=editAnimal&id=<?= $animal->id ?>" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="name" class="form-label">Prénom de l'animal</label>
