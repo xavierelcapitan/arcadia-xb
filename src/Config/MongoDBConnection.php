@@ -7,10 +7,6 @@ use MongoDB\Client;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-
-
-
-
 class MongoDBConnection {
     private static $client;
 

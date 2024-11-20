@@ -1,24 +1,12 @@
-<section class="banner-section">
-    <img src="/assets/images/animals/Arcadia-animals-image17.webp" alt="Elephant" class="banner-img">
-    <div class="banner-text">
-        <p class="banner-hours-title pt-3">
-            HORAIRES DU ZOO AUJOURD'HUI :
-            <span class="opening-hours">
-                <?php if (!empty($todaySchedule)): ?>
-                    <?php
-                    $schedule = array_values($todaySchedule)[0];
-                    echo $schedule['is_closed']
-                        ? 'Fermé'
-                        : htmlspecialchars($schedule['opening_time']) . ' – ' . htmlspecialchars($schedule['closing_time']);
-                    ?>
-                <?php else: ?>
-                    Horaires non disponibles
-                <?php endif; ?>
-            </span>
-        </p>
-    </div>
-</section>
 
+    <!-- Image de bannière en plein écran avec horaires en superposition -->
+    <section class="banner-section">
+        <img src="/assets/images/animals/Arcadia-animals-image17.webp" alt="Elephant" class="banner-img">
+        <div class="banner-text">
+            <p class="banner-hours-title pt-3">HORAIRES DU ZOO AUJOURD'HUI : <span class="opening-hours">9h – 19h</span></p>
+        
+        </div>
+    </section>
 
     <!-- Section Préparer votre visite -->
     <section class="visit-section">
