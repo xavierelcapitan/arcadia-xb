@@ -35,9 +35,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?= $activePage === 'horaires' ? 'active' : '' ?>" href="/index.php?controller=admin&action=horaires"><i class="fas fa-clock"></i> Horaires</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?= $activePage === 'services' ? 'active' : '' ?>" href="/index.php?controller=services&action=listservices"><i class="fas fa-concierge-bell"></i> Services</a>
-                    </li>
+            
                     <li class="nav-item">
                         <a class="nav-link <?= $activePage === 'animals' ? 'active' : '' ?>" href="/index.php?controller=animal&action=listAnimals"><i class="fas fa-paw"></i> Liste des Animaux</a>
                     </li>
