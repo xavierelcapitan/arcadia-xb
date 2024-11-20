@@ -77,11 +77,11 @@ $foodTypes = Animal::getDistinctFoodTypes();
         }
     
         // Transmettre les données à la vue
-        $view = __DIR__ . '/../../views/admin/veterinary_reports/details_report.php';
+        $view = __DIR__ . '/../../Views/admin/veterinary_reports/details_report.php';
         $pageTitle = 'Détails du Rapport Vétérinaire';
         
         // Inclure le template du dashboard en passant les données
-        require_once __DIR__ . '/../../views/layouts/templatedashboard.php';
+        require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }
     
 // src/Controllers/VeterinaryReportController.php
