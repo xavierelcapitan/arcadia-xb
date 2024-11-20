@@ -26,7 +26,7 @@ class ReviewController
     public function moderation()
     {
         $pendingReviews = Reviews::getPendingReviews();
-        $view = __DIR__ . '/../../Views/Admin/reviews/moderation.php';
+        $view = __DIR__ . '/../../Views/admin/reviews/moderation.php';
         $pageTitle = "Modération des Avis";
         require_once __DIR__ . '/../../Views/layouts/templatedashboard.php';
     }

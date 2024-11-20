@@ -42,6 +42,12 @@
                     <li class="nav-item">
                         <a class="nav-link <?= $activePage === 'habitats' ? 'active' : '' ?>" href="/index.php?controller=habitat&action=listHabitats"><i class="fas fa-tree"></i> Habitats</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'rapports' ? 'active' : '' ?>" href="/index.php?controller=animal&action=showSummaries"><i class="fas fa-tree"></i> Résumés des Rapports</a>
+                    </li>
+
+
                     <li class="nav-item">
                         <a class="nav-link <?= $activePage === 'reviews' ? 'active' : '' ?>" href="/index.php?controller=review&action=moderation"><i class="fas fa-comments"></i> Modération des Avis</a>
                     </li>
@@ -66,17 +72,16 @@
                 <li class="menu-item <?= $activePage === 'users' ? 'active' : '' ?>">
                     <a href="/index.php?controller=admin&action=users"><i class="fas fa-users"></i> Utilisateurs</a>
                 </li>
-                <li class="menu-item <?= $activePage === 'horaires' ? 'active' : '' ?>">
-                    <a href="/index.php?controller=admin&action=horaires"><i class="fas fa-clock"></i> Horaires</a>
-                </li>
-                <li class="menu-item <?= $activePage === 'services' ? 'active' : '' ?>">
-                    <a href="/index.php?controller=services&action=listservices"><i class="fas fa-concierge-bell"></i> Services</a>
-                </li>
+               
                 <li class="menu-item <?= $activePage === 'animals' ? 'active' : '' ?>">
                     <a href="/index.php?controller=animal&action=listAnimals"><i class="fas fa-paw"></i> Liste des Animaux</a>
                 </li>
                 <li class="menu-item <?= $activePage === 'habitats' ? 'active' : '' ?>">
                     <a href="/index.php?controller=habitat&action=listHabitats"><i class="fas fa-tree"></i> Habitats</a>
+                </li>
+
+                <li class="menu-item <?= $activePage === 'rapports' ? 'active' : '' ?>">
+                    <a href="/index.php?controller=animal&action=showSummaries"><i class="fas fa-tree"></i> Rapports de vétérinaires</a>
                 </li>
                 <li class="menu-item <?= $activePage === 'reviews' ? 'active' : '' ?>">
                     <a href="/index.php?controller=review&action=moderation"><i class="fas fa-comments"></i> Modération des Avis</a>
@@ -111,7 +116,23 @@
         </main>
     </div>
 
-    <!-- Bootstrap JS -->
+ 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/filters_veterinary_reports.js"></script>
+    <script src="/assets/js/charts_dashboard.js"></script>
+    <script src="/assets/js/animal_count.js"></script>
+    <script src="https://cdn.tiny.cloud/1/xxwj3ndzqvtjri3i2yctdbu6s1pzq97jj4hs1d5a2fdgvuu4/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+    tinymce.init({
+        selector: 'textarea.tinymce', 
+        plugins: 'advlist autolink link image lists',
+        toolbar: 'bold italic | alignleft aligncenter alignright alignjustify | bullist numlist|',
+        menubar: false, 
+        valid_elements: '*[*]', 
+        forced_root_block: '', 
+        content_css: false 
+    });
+</script>
 </body>
 </html>
