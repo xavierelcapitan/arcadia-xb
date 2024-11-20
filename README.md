@@ -17,3 +17,6 @@ MongoDB
 mongodb+srv://xavierelcapitan:495aCYPg7RvM4IiH@ecfxb.qvher.mongodb.net/
 xavierelcapitan
 495aCYPg7RvM4IiH
+
+
+/usr/local/Cellar/php/8.3.10/pecl/20230831/mongodb.so
