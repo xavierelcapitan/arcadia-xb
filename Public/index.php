@@ -4,7 +4,7 @@
 use App\Config\Autoloader;
 use Dotenv\Dotenv; // Import du package dotenv
 
-// Charger l'autoloader de votre application
+// Charger l'autoloader 
 require_once __DIR__ . '/../src/Config/Autoloader.php';
 // Charger l'autoloader de Composer
 require_once __DIR__ . '/../vendor/autoload.php';
