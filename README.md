@@ -1,3 +1,4 @@
+
 **** Workflow de développement ****
 Initialisation du projet avec un dépôt Git.
 Configuration des dépendances avec Composer.
@@ -47,3 +48,5 @@ Justification : Cette extension permet de gérer MongoDB directement depuis VS C
 
 11. Dépôt de production : Serveur distant
 Justification : Une fois testé en local, le projet est déployé sur un serveur distant compatible avec PHP et MySQL, pour tester dans un environnement plus proche de la production.
+"=======
+
