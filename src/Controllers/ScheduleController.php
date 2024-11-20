@@ -6,6 +6,12 @@ namespace App\Controllers;
 use App\Models\Schedule;
 
 class ScheduleController {
+
+    public function getSchedules() {
+        $scheduleModel = new Schedule();
+        return $scheduleModel->getAllSchedules();
+    }
+
     public function index() {
         $scheduleModel = new Schedule();
         $schedules = $scheduleModel->getAllSchedules();
