@@ -6,6 +6,9 @@ namespace App\Controllers;
 use App\Models\User;
 use App\Config\SessionManager; 
 use App\Services\EmailService;
+use App\Models\Habitat;
+use App\Models\Reviews;
+use App\Models\Animal;
 
 class AdminController {
 
@@ -92,6 +95,31 @@ class AdminController {
     public function deleteUser($id) {
         User::delete($id);
         header('Location: /index.php?controller=admin&action=users');
+    }
+
+
+    
+    // Récupérer les données du tableau de bord
+    public function getDashboardData()
+    {
+        // Récupérer les statistiques depuis les modèles
+        $habitatCount = Habitat::getCount();
+        $animalCount = Animal::getCount();
+        $totalClicks = Animal::getTotalViews();
+        $topAnimals = Animal::getTopViewed(3);
+        $reviewsCount = Reviews::getCount();
+        $habitatDistribution = Habitat::getAnimalDistribution();
+
+        // Retourner les données au format JSON
+        echo json_encode([
+            'habitatCount' => $habitatCount,
+            'animalCount' => $animalCount,
+            'totalClicks' => $totalClicks,
+            'topAnimals' => $topAnimals,
+            'reviewsCount' => $reviewsCount,
+            'habitatDistribution' => $habitatDistribution,
+        ]);
+        exit; 
     }
 
 }

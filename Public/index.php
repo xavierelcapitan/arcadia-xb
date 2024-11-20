@@ -32,3 +32,4 @@ if (class_exists($controller)) {
 } else {
     echo "Contrôleur '$controller' non trouvé.";
 }
+

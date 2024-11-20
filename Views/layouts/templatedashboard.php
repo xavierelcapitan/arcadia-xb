@@ -8,128 +8,112 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <!-- Admin CSS -->
     <link rel="stylesheet" href="/assets/css/admin.css">
-
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 </head>
 <body>
-
-    <!-- Sidebar and Content Wrapper -->
-    <div class="container-fluid">
-        <div class="row">
-
-            <!-- Sidebar -->
-            <aside class="admin-sidebar">
-                <div class="logo">
-                    <img src="/assets/images/logo.png" alt="Logo">
-                </div>
-                <ul>
-                    <li><a href="/index.php?controller=admin&action=dashboard">Dashboard</a></li>
-                    <li><a href="/index.php?controller=admin&action=users">Utilisateurs</a></li>
-                    <li><a href="/index.php?controller=admin&action=horaires">Horaires</a></li>
-                    <li><a href="/index.php?controller=services&action=listservices">Services</a></li>
+    <!-- Menu pour mobile -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-lg-none">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/assets/images/pict/LOGOARCADIAFOOTERXAVIER.png" alt="Logo" class="logo-mobile">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mobileMenu">
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'dashboard' ? 'active' : '' ?>" href="/index.php?controller=admin&action=dashboard"><i class="fas fa-home"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'users' ? 'active' : '' ?>" href="/index.php?controller=admin&action=users"><i class="fas fa-users"></i> Utilisateurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'horaires' ? 'active' : '' ?>" href="/index.php?controller=admin&action=horaires"><i class="fas fa-clock"></i> Horaires</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'services' ? 'active' : '' ?>" href="/index.php?controller=services&action=listservices"><i class="fas fa-concierge-bell"></i> Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'animals' ? 'active' : '' ?>" href="/index.php?controller=animal&action=listAnimals"><i class="fas fa-paw"></i> Liste des Animaux</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'habitats' ? 'active' : '' ?>" href="/index.php?controller=habitat&action=listHabitats"><i class="fas fa-tree"></i> Habitats</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $activePage === 'reviews' ? 'active' : '' ?>" href="/index.php?controller=review&action=moderation"><i class="fas fa-comments"></i> Modération des Avis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.php?controller=auth&action=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                    </li>
                 </ul>
-                
-                    <hr>
-    <h4>Gestion des Animaux</h4>
-    <ul>
-        <li><a href="/index.php?controller=animal&action=listAnimals">Liste des Animaux</a></li>
-        <li><a href="/index.php?controller=habitat&action=listHabitats">Habitats</a></li>
-        <li><a href="/index.php?controller=animal&action=showSummaries">Résumés des Rapports</a></li>
-    </ul>
-</li>
-
-<h4>Avis</h4>
-<a href="/index.php?controller=review&action=moderation">Modération des Avis</a>
-
-<div>
-<a href="/index.php?controller=auth&action=logout">Log Out</a>
-</div>
-
-
-
-            </aside>
-
-            <!-- Main Content -->
-            <main class="admin-main">
-                <!-- Header (dynamic) -->
-                <header class="admin-header">
-                    <h1><?= $pageTitle ?? 'Tableau de bord' ?></h1>
-                    <button class="burger-menu" id="burgerMenu">
-                        &#9776;
-                    </button>
-                </header>
-
-                <!-- Main content (dynamic) -->
-                <section class="admin-content">
-                <?php // Vérifier que $view est défini
-if (isset($view)) {
-    if (file_exists($view)) {
-        require_once $view;
-    } else {
-        echo "Vue non trouvée : $view";
-    }
-} else {
-    echo "Aucune vue spécifiée.";
-}?>
-                </section>
-
-                <!-- Footer -->
-                <footer class="footer">
-                    <div class="container">
-                        <p class="text-center">© 2024 - Tableau de bord Admin</p>
-                    </div>
-                </footer>
-            </main>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <!-- jQuery (obligatoire pour DataTables, TinyMCE, etc.) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <div class="dashboard">
+        <!-- Sidebar pour desktop -->
+        <aside class="admin-sidebar d-none d-lg-flex">
+            <div class="logo">
+                <img src="/assets/images/pict/LOGOARCADIAFOOTERXAVIER.png" alt="Logo">
+            </div>
+            <ul class="menu">
+                <li class="menu-item <?= $activePage === 'dashboard' ? 'active' : '' ?>">
+                    <a href="/index.php?controller=admin&action=dashboard"><i class="fas fa-home"></i> Dashboard</a>
+                </li>
+                <li class="menu-item <?= $activePage === 'users' ? 'active' : '' ?>">
+                    <a href="/index.php?controller=admin&action=users"><i class="fas fa-users"></i> Utilisateurs</a>
+                </li>
+                <li class="menu-item <?= $activePage === 'horaires' ? 'active' : '' ?>">
+                    <a href="/index.php?controller=admin&action=horaires"><i class="fas fa-clock"></i> Horaires</a>
+                </li>
+                <li class="menu-item <?= $activePage === 'services' ? 'active' : '' ?>">
+                    <a href="/index.php?controller=services&action=listservices"><i class="fas fa-concierge-bell"></i> Services</a>
+                </li>
+                <li class="menu-item <?= $activePage === 'animals' ? 'active' : '' ?>">
+                    <a href="/index.php?controller=animal&action=listAnimals"><i class="fas fa-paw"></i> Liste des Animaux</a>
+                </li>
+                <li class="menu-item <?= $activePage === 'habitats' ? 'active' : '' ?>">
+                    <a href="/index.php?controller=habitat&action=listHabitats"><i class="fas fa-tree"></i> Habitats</a>
+                </li>
+                <li class="menu-item <?= $activePage === 'reviews' ? 'active' : '' ?>">
+                    <a href="/index.php?controller=review&action=moderation"><i class="fas fa-comments"></i> Modération des Avis</a>
+                </li>
+            </ul>
+            <div class="logout">
+                <a href="/index.php?controller=auth&action=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+            </div>
+        </aside>
+
+        <!-- Contenu principal -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1><?= $pageTitle ?? 'Tableau de bord' ?></h1>
+            </header>
+            <section class="admin-content">
+                <?php 
+                if (isset($view)) {
+                    if (file_exists($view)) {
+                        require_once $view;
+                    } else {
+                        echo "Vue non trouvée : $view";
+                    }
+                } else {
+                    echo "Aucune vue spécifiée.";
+                }
+                ?>
+            </section>
+            <footer class="footer">
+                <p class="text-center">© 2024 - ARCADIA BX - Tableau de bord Admin</p>
+            </footer>
+        </main>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- TinyMCE -->
-<!-- TinyMCE -->
-<script src="https://cdn.tiny.cloud/1/xxwj3ndzqvtjri3i2yctdbu6s1pzq97jj4hs1d5a2fdgvuu4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-  tinymce.init({
-    selector: 'textarea.tinymce', 
-    plugins: 'lists', 
-    toolbar: 'undo redo | bold | alignleft aligncenter alignright alignjustify | bullist numlist', 
-    menubar: false, 
-    valid_styles: {
-      '*': 'text-align' 
-    },
-    setup: function(editor) {
-      editor.on('change', function() {
-        tinymce.triggerSave();  
-      });
-    },
-    content_css: false, 
-    forced_root_block: '', 
-  });
-</script>
-
-
-
-
-
-
-    <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- Scripts personnalisés -->
-    <script src="/assets/js/burger-menu.js"></script>
-    <script src="/assets/js/datatables_setup.js"></script>
-    <script src="/assets/js/filters_veterinary_reports.js"></script>
-    <script src="/assets/js/charts_dashboard.js"></script>
-    <script src="/assets/js/animal_count.js"></script>
 </body>
 </html>

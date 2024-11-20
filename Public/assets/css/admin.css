@@ -1,151 +1,206 @@
+@import url('/assets/css/variables.css');
+
 /* Style général */
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
 }
-/* Style par défaut pour grand écran */
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar desktop */
 .admin-sidebar {
-  width: 250px;
-  height: 100vh;
-  background-color: #343a40;
   position: fixed;
   top: 0;
   left: 0;
-  padding-top: 20px;
-  transform: translateX(0); /* Toujours visible sur grand écran */
-  transition: transform 0.3s ease;
+  width: 250px;
+  height: 100vh;
+  background-color: var(--color-accent);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
 }
 
+.admin-sidebar .logo {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #444;
+}
 
 .admin-sidebar .logo img {
-  display: block;
-  margin: 0 auto;
-  max-width: 100px;
+  max-width: 80%;
+  height: auto;
 }
 
-.admin-sidebar ul {
-  list-style: none;
-  padding-left: 0;
+
+
+/* Alignement des liens en haut */
+.admin-sidebar .menu {
+  flex-grow: 1;
+  padding: 0;
   margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
-.admin-sidebar ul li {
-  margin-bottom: 20px;
+.admin-sidebar .menu-item {
+  padding: 15px 20px;
+  color: var(--color-primary-hover);
+  font-size: 16px;
+  font-weight: normal;
+  text-decoration: none; 
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.admin-sidebar .menu-item a {
+  color: var(--color-primary-hover);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.admin-sidebar .menu-item:hover,
+.admin-sidebar .menu-item.active {
+  background-color: var(--color-primary-hover);
+  color: white;
+  font-weight: bold;
+}
+
+.admin-sidebar .menu-item a:hover {
+  color: white;
+}
+
+
+.admin-sidebar .logout {
+  padding: 20px;
   text-align: center;
+  margin-top: auto; 
+  border-top: 1px solid #444;
 }
 
-.admin-sidebar ul li a {
+.admin-sidebar .logout a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
-  padding: 10px 0;
-  display: block;
-}
-
-.admin-sidebar ul li a:hover {
-  background-color: #495057;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--color-primary-hover);
   border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
-.admin-sidebar.active {
-  transform: translateX(0);
+.admin-sidebar .logout a:hover {
+  background-color: #684c4a;
 }
 
 /* Contenu principal */
 .admin-main {
-  background-color: #343a40;
-  margin-left: 250px; /* La largeur de la sidebar */
-  width: calc(100% - 250px); /* Prendre tout l'espace sauf la sidebar */
-  min-height: 100vh; /* Pour couvrir toute la hauteur de la page */
+  margin-left: 250px;
+  flex: 1; 
+  padding: 20px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh - 60px; 
+  box-sizing: border-box;
 }
 
-.admin-header {
-  background-color: #2c793e;
-  color: white;
-  padding: 20px;
-  text-align: center;
+.admin-header h1 {
+  font-size: 2.5rem; 
+  color: var(--color-primary); 
+  font-weight: bold;
+  text-transform: uppercase; 
+  border-bottom: 3px solid var(--color-primary-hover); 
+  display: inline-block;
+  margin-bottom: 20px; 
+  padding-bottom: 5px; 
 }
 
-.admin-content {
-  background-color: #e7e7e7;
-  padding: 20px;
-  min-height: 85vh; /* Ajuster la hauteur si nécessaire */
+/* Menu burger */
+.navbar-toggler {
+  position: relative;
+  z-index: 20; 
 }
+
+
+
+.navbar-dark .navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg viewBox='0 0 30 30'%3E%3Cpath stroke='%23000000' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar {
+  z-index: 20; 
+  position: relative; 
+  background-color: #373737;
+}
+
+
+
+
+.logo-mobile {
+  width: 120px;
+  height: auto;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .admin-sidebar {
+    display: none !important; 
+  }
+
+  .admin-main {
+    margin-left: 0;
+  }
+}
+
+.chart-card {
+  height: 400px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.chart-card .card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+  height: 100%; 
+}
+
+.chart-card canvas {
+  width: 100% !important; 
+  height: 100% !important; 
+  max-height: 400px; 
+  object-fit: contain; 
+}
+
+
+
 
 
 /* Footer */
 .footer {
-  background-color: #343a40;
-  color: white;
-  padding: 10px 0;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-}
-
-
-
-/* Styles pour le menu burger */
-.burger-menu {
-  display: none;
-  background-color: #2c793e;
-  color: white;
-  border: none;
-  font-size: 24px;
-  padding: 10px;
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-}
-
-/* Afficher le menu burger sur les petits écrans */
-@media (max-width: 768px) {
-  .admin-sidebar {
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: -100%; /* Masquer le menu hors écran */
-    transition: left 0.3s ease;
-  }
-
-  .admin-sidebar.open {
-    left: 0; /* Afficher le menu */
-  }
-
-  .burger-menu {
-    display: block; /* Afficher le bouton burger sur mobile */
-  }
-
-  /* Le contenu principal prend toute la largeur si le menu est fermé */
-  .admin-main {
-    margin-left: 0;
-    width: 100%;
-  }
-}
-
-/* Cacher la barre latérale par défaut sur mobile (écrans de moins de 768px) */
-@media (max-width: 768px) {
-  .admin-sidebar {
-      transform: translateX(-250px); /* Masquer sur mobile */
-  }
-
-  .admin-sidebar.active {
-      transform: translateX(0); /* Afficher la barre latérale quand la classe active est ajoutée */
-  }
-}
-
-/* Rendre le main content plein écran sur mobile */
-.admin-main {
-  margin-left: 250px; /* La largeur de la sidebar */
-  padding: 20px;
-  transition: margin-left 0.3s ease;
-}
-
-@media (max-width: 768px) {
-  .admin-main {
-      margin-left: 0; /* Plein écran sur mobile quand la sidebar est masquée */
-  }
+  margin-top: auto; /* Pousse le footer vers le bas */
+  background-color: #f7f7f7;
+  padding: 10px 20px;
+  text-align: center;
+  color: #6b6b6b;
+  border-top: 1px solid #ddd;
 }
