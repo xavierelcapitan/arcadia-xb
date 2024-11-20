@@ -1,6 +1,7 @@
 <?php
 // src/Controllers/AdminController.php
 
+
 namespace App\Controllers;
 
 use App\Models\User;
