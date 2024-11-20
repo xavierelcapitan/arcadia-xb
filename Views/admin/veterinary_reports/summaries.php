@@ -44,7 +44,6 @@
             </tr>
         </thead>
         <tbody id="tableBody">
-            <!-- JavaScript INPUT-->
         </tbody>
     </table>
 </div>
