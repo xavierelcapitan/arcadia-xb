@@ -848,7 +848,6 @@ button:hover, a:hover {
   color: #555;
 }
 
-/* Assurez-vous que le conteneur Swiper est positionné de manière relative */
 .reviews-container {
   position: relative;
   padding: 20px;
@@ -892,7 +891,7 @@ button:hover, a:hover {
 
 /* Style pour le bouton "Publier un avis" */
 .btn-publish-review {
-  background-color: #d9534f; /* Rouge */
+  background-color: #d9534f; 
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -905,12 +904,12 @@ button:hover, a:hover {
 }
 
 .btn-publish-review:hover {
-  background-color: #c9302c; /* Rouge foncé au survol */
+  background-color: #c9302c; 
 }
 
 /* Styles pour la modale */
 .modal {
-  display: none; /* Masqué par défaut */
+  display: none;
   position: fixed;
   z-index: 1000;
   left: 0;
