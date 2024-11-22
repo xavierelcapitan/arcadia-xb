@@ -1,7 +1,5 @@
 <?php
 
-// src/Controllers/MainController.php ou ReviewController.php
-
 namespace App\Controllers;
 
 use App\Models\Reviews;
