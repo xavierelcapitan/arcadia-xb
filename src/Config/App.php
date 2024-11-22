@@ -19,7 +19,7 @@ class Main
             //redirection permanente sans le / de fin (301)
             http_response_code(301);
             header('Location: ' . $uri);
-            exit(); // Assurez-vous que le script ne continue pas après la redirection
+            exit(); 
         }
 
         // Gestion des paramètres d'URL
