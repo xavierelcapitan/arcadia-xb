@@ -87,7 +87,7 @@ class User extends Model
         }
     }
 
-    // Méthode getById() (si nécessaire)
+    // Méthode getById()
     public static function getById($id)
     {
         $db = (new self())->getDbInstance();
